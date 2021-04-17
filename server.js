@@ -11,7 +11,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 io.on('connection', function(socket){
     socket.on('chat message', function(msg){
         io.emit('chat message', msg);
-    })
+    });
+    socket.broadcast.emit('broadcast', "A User has joined the Chat...");
+
+    socket.on('disconnect', function(){
+        socket.broadcast.emit('broadcast', "A User has left the Chat...");
+    });
 });
 
 server.listen(port, function(){

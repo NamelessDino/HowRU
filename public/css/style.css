@@ -38,22 +38,30 @@ body {
   color: #fff;
 }
 
-#messages {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+#message-box > li {
+  display: inline-block;
+  clear: both;
+  padding: 10px;
+  border-radius: 30px;
+  margin-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
 }
-#messages > li {
-  padding: 0.5rem 1rem;
-  size: 10%;
-  background-color: #d6d6d6;
-}
-#messages > li:nth-child(odd) {
-  padding: 0.5rem 1rem;
-  size: 10%;
-  background-color: #fff;
+.messages:nth-child(even) {
+  float: left;
+  background-color: rgb(139, 139, 139);
+  color: #fff;
 }
 
+.messages:nth-child(odd) {
+  float: right;
+  background-color: rgb(28, 119, 255);
+  color: #fff;
+}
+.broadcast {
+  float: left;
+  background-color: #ffffff !important;
+  color: black !important;
+}
 .sticky-top {
   position: fixed;
   top: 0;
