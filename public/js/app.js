@@ -16,7 +16,7 @@ socket.on('chat message', function(msg){
     console.log(msg);
     var item = document.createElement('li');
     item.classList.add("messages");
-    item.textContent = msg;
+    item.innerHTML = `<p class="meta">${msg.username}: <span>${msg.time}</span><p/> <p class="bubble">${msg.text}</p>`;
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
 });
@@ -25,9 +25,8 @@ socket.on('broadcast', function(msg){
     console.log(msg);
     var item = document.createElement('li');
     item.classList.add("broadcast");
-    item.textContent = msg;
+    item.innerHTML = `<p class="meta">${msg.username}: <span>${msg.time}</span><p/> <p>${msg.text}</p>`;
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
 });
-
 

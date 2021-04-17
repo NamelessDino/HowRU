@@ -5,6 +5,7 @@ body {
   padding-bottom: 3rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
+  font-size: 12pt;
 }
 #form {
   background: rgba(0, 0, 0, 0.15);
@@ -39,32 +40,42 @@ body {
 }
 
 #message-box > li {
-  display: inline-block;
+  display: block;
   clear: both;
-  padding: 10px;
-  border-radius: 30px;
   margin-bottom: 2px;
   font-family: Helvetica, Arial, sans-serif;
+  text-align: left;
 }
-.messages:nth-child(even) {
+.messages {
   float: left;
-  background-color: rgb(139, 139, 139);
-  color: #fff;
 }
-
 .messages:nth-child(odd) {
   float: right;
+}
+.bubble {
+  border-radius: 30px;
+  padding: 10px;
+}
+.messages > .bubble {
+  background-color: rgb(214, 214, 214);
+  color: #000;
+}
+.messages:nth-child(odd) > .bubble {
   background-color: rgb(28, 119, 255);
   color: #fff;
 }
 .broadcast {
   float: left;
-  background-color: #ffffff !important;
-  color: black !important;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 .sticky-top {
   position: fixed;
   top: 0;
+}
+.meta {
+  font-size: 8pt;
 }
 
 #header {
