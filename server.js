@@ -3,14 +3,10 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
-const port = 4000;
-const path = __dirname + '/public';
+const port = 4000 || process.env.PORT;
+const path = require('path')
 
-app.use(express.static(path));
-
-app.get('/', function(req, res){
-    res.sendFile(path + '/view/index.html');
-});
+app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', function(socket){
     socket.on('chat message', function(msg){
@@ -19,5 +15,5 @@ io.on('connection', function(socket){
 });
 
 server.listen(port, function(){
-    console.log("listening to *:" + port);
+    console.log(`Server running on http://localhost:${port}`);
 })
