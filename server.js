@@ -6,7 +6,7 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 
 const port = 4000 || process.env.PORT;
-const formatMessage = require('./public/utils/messages');
+const formatMessage = require('./utils/messages');
 
 const broadcast = 'Broadcast'
 
