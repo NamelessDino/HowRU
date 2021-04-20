@@ -7,7 +7,13 @@ body {
     Arial, sans-serif;
   font-size: 12pt;
 }
+
 #header {
   background-color: #fff;
   font-family: "Bad Script", bold;
+}
+
+.sticky-top {
+  position: fixed;
+  top: 0;
 }
