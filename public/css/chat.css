@@ -57,13 +57,13 @@
 }
 
 .myMessage {
-  max-width: 45%;
+  max-width: 47%;
   word-wrap: break-word;
   float: right;
 }
 
 .hisMessage {
-  max-width: 45%;
+  max-width: 47%;
   word-wrap: break-word;
   float: left;
 }

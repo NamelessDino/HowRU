@@ -6,29 +6,31 @@ const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 const port = 4000 || process.env.PORT;
-const mongoose = require('mongoose');
-const dbDependencies = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-};
+const connect = require('./utils/dbconnect');
+const chatRouter = require('./routes/chatroute');
 
 //! Variables
+const bodyParser = require('body-parser')
 require('dotenv/config');
 const formatMessage = require('./utils/messages');
+const Chat = require('./models/ChatSchema');
 const {
     UserJoin,
     getCurrentUser
 } = require('./utils/users');
-const broadcast = 'Broadcast'
+const broadcast = 'Broadcast';
 
 //! Code
+//* Express App
 app.use(express.static(path.join(__dirname, 'public')));
-mongoose.connect(`mongodb+srv://${process.env.DB_User}:${process.env.DB_Password}@datacluster.gefcj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, dbDependencies, function () {
-    console.log('connected to Database using env variables');
-});
+app.use(bodyParser.json);
 
+//* Routes
+app.use("/chats", chatRouter);
+
+//* Socket.io
 io.on('connection', function (socket) {
-
+    console.log(socket.id);
     socket.on("JoinRoom", function ({
         username,
         room
@@ -42,6 +44,11 @@ io.on('connection', function (socket) {
     socket.on('chat message', function (msg) {
         const user = getCurrentUser(socket.id);
         io.to(user.room).emit('chat message', formatMessage(user.username, msg));
+        connect.then(function (db) {
+            console.log("connection to database while receiving message");
+            //let chatMessage = new Chat({roomName: user.room, sender: user.username});
+            //chatMessage.save();
+        })
     });
 
     socket.on('disconnect', function () {
@@ -49,6 +56,7 @@ io.on('connection', function (socket) {
     });
 });
 
+//* Server
 server.listen(port, function () {
     console.log(`Server running on http://localhost:${port}`);
 })
