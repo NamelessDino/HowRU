@@ -1,23 +1,31 @@
+//! Connection Setup
 const path = require('path')
 const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
-
 const port = 4000 || process.env.PORT;
+const mongoose = require('mongoose');
+const dbDependencies = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+};
+
+//! Variables
+require('dotenv/config');
 const formatMessage = require('./utils/messages');
 const {
     UserJoin,
     getCurrentUser
 } = require('./utils/users');
-const {
-    Socket
-} = require('dgram');
-
 const broadcast = 'Broadcast'
 
+//! Code
 app.use(express.static(path.join(__dirname, 'public')));
+mongoose.connect(`mongodb+srv://${process.env.DB_User}:${process.env.DB_Password}@datacluster.gefcj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, dbDependencies, function () {
+    console.log('connected to Database using env variables');
+});
 
 io.on('connection', function (socket) {
 

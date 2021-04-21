@@ -3,7 +3,7 @@ var messages = document.getElementById('message-box');
 var form = document.getElementById('form');
 var input = document.getElementById('input');
 
-//Get Username and Room
+//*Get Username and Room
 const {
     username,
     room
@@ -13,7 +13,7 @@ const {
 
 console.log(`${username}, ${room}`);
 
-//Join Room
+//*Join Room
 socket.emit("JoinRoom", {
     username,
     room
@@ -21,34 +21,28 @@ socket.emit("JoinRoom", {
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();
-    if (input.value) {
-        socket.emit('chat message', input.value);
-        input.value = '';
-    }
+    if (!input.value) return;
+    socket.emit('chat message', input.value);
+    input.value = '';
 });
 
 socket.on('chat message', function (msg) {
+    console.log(msg);
     var cssClass;
-
     if (msg.username == username) cssClass = "myMessage";
     else cssClass = "hisMessage";
-
-    console.log(msg);
-
-    var item = document.createElement('li');
-    item.classList.add(cssClass);
-    item.innerHTML = `<p class="meta"><b>${msg.username}</b>: <span>${msg.time}</span><p/> <p class="bubble">${msg.text}</p>`;
-    messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
+    outputMessageToHTML(cssClass, `<p class="meta"><b>${msg.username}</b>: <span>${msg.time}</span><p/> <p class="bubble">${msg.text}</p>`);
 });
 
 socket.on('broadcast', function (msg) {
-
     console.log(msg);
+    outputMessageToHTML('broadcast', `<p class="meta">${msg.username}: <span>${msg.time}</span><p/> <p>${msg.text}</p>`);
+});
 
+function outputMessageToHTML(cssClass, htmlText) {
     var item = document.createElement('li');
-    item.classList.add("broadcast");
-    item.innerHTML = `<p class="meta">${msg.username}: <span>${msg.time}</span><p/> <p>${msg.text}</p>`;
+    item.classList.add(cssClass);
+    item.innerHTML = htmlText;
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
-});
+}

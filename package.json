@@ -4,7 +4,7 @@
   "description": "A small chat web app",
   "main": "server.js",
   "scripts": {
-    "start": "node server"
+    "start": "nodemon server"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,10 @@
   },
   "homepage": "https://github.com/NamelessDino/HowRU#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "moment": "^2.29.1",
+    "mongoose": "^5.12.5",
     "socket.io": "^4.0.1"
   },
   "devDependencies": {}
