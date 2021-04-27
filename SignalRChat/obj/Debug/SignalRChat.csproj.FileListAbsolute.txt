@@ -1,0 +1,152 @@
+C:\Projects\SignalRChat\SignalRChat\bin\SignalRChat.dll.config
+C:\Projects\SignalRChat\SignalRChat\bin\SignalRChat.dll
+C:\Projects\SignalRChat\SignalRChat\bin\SignalRChat.pdb
+C:\Projects\SignalRChat\SignalRChat\bin\Antlr3.Runtime.dll
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.Owin.dll
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.Owin.Security.dll
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.Web.Infrastructure.dll
+C:\Projects\SignalRChat\SignalRChat\bin\Newtonsoft.Json.dll
+C:\Projects\SignalRChat\SignalRChat\bin\Owin.dll
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.Helpers.dll
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.Mvc.dll
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.Optimization.dll
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.Razor.dll
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.WebPages.Deployment.dll
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.WebPages.dll
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.WebPages.Razor.dll
+C:\Projects\SignalRChat\SignalRChat\bin\WebGrease.dll
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.Owin.xml
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Projects\SignalRChat\SignalRChat\bin\Microsoft.Owin.Security.xml
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.Helpers.xml
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.Mvc.xml
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.Optimization.xml
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.Razor.xml
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.WebPages.xml
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.WebPages.Deployment.xml
+C:\Projects\SignalRChat\SignalRChat\bin\System.Web.WebPages.Razor.xml
+C:\Projects\SignalRChat\SignalRChat\bin\Newtonsoft.Json.xml
+C:\Projects\SignalRChat\SignalRChat\bin\Antlr3.Runtime.pdb
+C:\Projects\SignalRChat\SignalRChat\obj\Debug\SignalRChat.csprojResolveAssemblyReference.cache
+C:\Projects\SignalRChat\SignalRChat\obj\Debug\SignalRChat.dll
+C:\Projects\SignalRChat\SignalRChat\obj\Debug\SignalRChat.pdb
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\SignalRChat.dll.config
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\SignalRChat.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\SignalRChat.pdb
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Antlr3.Runtime.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.Owin.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.Owin.Security.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Newtonsoft.Json.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Owin.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.Helpers.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.Mvc.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.Optimization.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.Razor.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.WebPages.Deployment.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.WebPages.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.WebPages.Razor.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\WebGrease.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.Owin.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Microsoft.Owin.Security.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.Helpers.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.Mvc.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.Optimization.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.Razor.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.WebPages.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.WebPages.Deployment.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\System.Web.WebPages.Razor.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Newtonsoft.Json.xml
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\bin\Antlr3.Runtime.pdb
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\obj\Debug\SignalRChat.csprojResolveAssemblyReference.cache
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\obj\Debug\SignalRChat.dll
+C:\Users\hitesh.sahu\Downloads\Getting Started with SignalR 2.0 and MVC 5\C#\SignalRChat\obj\Debug\SignalRChat.pdb
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\SignalRChat.dll.config
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\SignalRChat.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\SignalRChat.pdb
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Antlr3.Runtime.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.Owin.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.Owin.Security.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.Web.Infrastructure.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Newtonsoft.Json.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Owin.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.Helpers.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.Mvc.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.Optimization.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.Razor.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.WebPages.Deployment.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.WebPages.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.WebPages.Razor.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\WebActivatorEx.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\WebGrease.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.Owin.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Microsoft.Owin.Security.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.Helpers.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.Mvc.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.Optimization.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.Razor.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.WebPages.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.WebPages.Deployment.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\System.Web.WebPages.Razor.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Newtonsoft.Json.xml
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\bin\Antlr3.Runtime.pdb
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\obj\Debug\SignalRChat.dll
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\obj\Debug\SignalRChat.pdb
+D:\GitSecret\SignalR2-ChatApp-MVC-\SignalRChat\obj\Debug\SignalRChat.csprojResolveAssemblyReference.cache
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\SignalRChat.dll.config
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\SignalRChat.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\SignalRChat.pdb
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Antlr3.Runtime.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.Owin.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.Owin.Security.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.Web.Infrastructure.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Newtonsoft.Json.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Owin.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.Helpers.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.Mvc.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.Optimization.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.Razor.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.WebPages.Deployment.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.WebPages.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.WebPages.Razor.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\WebActivatorEx.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\WebGrease.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.Owin.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Microsoft.Owin.Security.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.Helpers.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.Mvc.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.Optimization.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.Razor.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.WebPages.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.WebPages.Deployment.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\System.Web.WebPages.Razor.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Newtonsoft.Json.xml
+E:\Projekte\SignalR MVC Chat\SignalRChat\bin\Antlr3.Runtime.pdb
+E:\Projekte\SignalR MVC Chat\SignalRChat\obj\Debug\SignalRChat.csprojAssemblyReference.cache
+E:\Projekte\SignalR MVC Chat\SignalRChat\obj\Debug\SignalRChat.csproj.CoreCompileInputs.cache
+E:\Projekte\SignalR MVC Chat\SignalRChat\obj\Debug\SignalRChat.csproj.CopyComplete
+E:\Projekte\SignalR MVC Chat\SignalRChat\obj\Debug\SignalRChat.dll
+E:\Projekte\SignalR MVC Chat\SignalRChat\obj\Debug\SignalRChat.pdb
