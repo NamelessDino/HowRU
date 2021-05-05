@@ -22,13 +22,13 @@ const {
     getUsers
 } = require('./utils/users');
 const bcrypt = require('bcrypt');
-const broadcast = 'Broadcast';
 const initializePassport = require('./passport-config.js');
 initializePassport(
     passport,
     email => getUsers().find(user => user.email === email),
     id => getUsers().find(user => user.id === id)
 );
+const broadcast = 'Broadcast';
 var user = {};
 
 //! Code
@@ -47,27 +47,27 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //* Routes
-app.get("/", (req, res) => {
+app.get("/", checkAuthenticated, (req, res) => {
     user = req.user;
-    res.render('chat.ejs')
+    res.render('index.ejs')
 });
-app.get("/chat", (req, res) => {
-    res.render('chat.ejs');
+app.get("/chat", checkAuthenticated, (req, res) => {
+    res.render('chat.ejs', {name: user.username});
 });
 app.route("/login")
-    .get((req, res) => {
+    .get(checkNotAuthenticated, (req, res) => {
         res.render('login.ejs')
     })
-    .post(passport.authenticate('local', {
+    .post(checkNotAuthenticated, passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/login',
         failureFlash: true
     }));
 app.route("/register")
-    .get((req, res) => {
+    .get(checkNotAuthenticated, (req, res) => {
         res.render('register.ejs');
     })
-    .post(async (req, res) => {
+    .post(checkNotAuthenticated, async (req, res) => {
         try {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             createUser(
@@ -110,7 +110,7 @@ io.on('connection', function (socket) {
         })
     });
     socket.on('disconnect', function () {
-        socket.broadcast.emit('broadcast', formatMessage(broadcast, "A User has left the Chat..."));
+        socket.broadcast.emit('broadcast', formatMessage(broadcast, `${username} has left the Chat...`));
     });
 });
 
@@ -118,3 +118,17 @@ io.on('connection', function (socket) {
 server.listen(port, function () {
     console.log(`Server running on http://localhost:${port}`);
 });
+
+//Checking whether a user is not logged in
+//Preventing not logged in users to enter sites, they are not allowed to
+function checkAuthenticated(req, res, next){
+    if(req.isAuthenticated()) return next();
+    res.redirect("/login");
+}
+
+//Checking whether a user is already logged in.
+//Preventing a already logged in user to enter the registration or login site
+function checkNotAuthenticated(req, res, next){
+    if(req.isAuthenticated()) return res.redirect("/");
+    next();
+}

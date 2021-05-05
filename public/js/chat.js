@@ -2,8 +2,10 @@ var socket = io();
 var messages = document.getElementById('message-box');
 var form = document.getElementById('form');
 var input = document.getElementById('input');
+var username = document.getElementsByTagName('head')[0].id;
 
 //*Join Room
+console.log(username);
 socket.emit("JoinRoom");
 form.addEventListener('submit', function (event) {
     event.preventDefault();
