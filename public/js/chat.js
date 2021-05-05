@@ -3,22 +3,8 @@ var messages = document.getElementById('message-box');
 var form = document.getElementById('form');
 var input = document.getElementById('input');
 
-//*Get Username and Room
-const {
-    username,
-    room
-} = Qs.parse(location.search, {
-    ignoreQueryPrefix: true
-});
-
-console.log(`${username}, ${room}`);
-
 //*Join Room
-socket.emit("JoinRoom", {
-    username,
-    room
-});
-
+socket.emit("JoinRoom");
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     if (!input.value) return;
