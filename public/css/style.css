@@ -1,5 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Bad+Script);
 
+::-webkit-scrollbar {
+  width: 0.25rem;
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #333;
+}
+
 body {
   margin: 0;
   padding-bottom: 3rem;
@@ -11,6 +22,61 @@ body {
 #header {
   background-color: #fff;
   font-family: "Bad Script", bold;
+  border-bottom: 5px solid #333;
+  height: 10vh;
+  padding: 0.5rem;
+  z-index: 0;
+}
+
+main{
+  margin-left: 5rem;
+}
+.navbar{
+  color: #fff;
+  width: 5rem;
+  height: 100vh;
+  background-color: #333;
+  position: fixed !important;
+  transition: width 200ms ease;
+  z-index: 2;
+}
+.navbar-nav{
+  list-style: none;
+  padding: 5;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+  height: 100%;
+}
+.navbar-item{
+  width: 100%;
+}
+.navbar-item  a{
+  color: #fff;
+}
+.navbar-item:last-child{
+  margin-top: auto;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  text-decoration: none;
+}
+.nav-link svg {
+  min-width: 2rem;
+  margin: 0 1.5rem
+}
+.link-text {
+  display: none;
+  margin-left: 1rem;
+}
+.navbar:hover{
+  width: 15rem;
+}
+.navbar:hover .link-text{
+  display: block;
 }
 
 .sticky-top {

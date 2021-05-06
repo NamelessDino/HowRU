@@ -1,7 +1,10 @@
 var socket = io();
+var messageContainer = document.getElementById('message-container');
 var messages = document.getElementById('message-box');
 var form = document.getElementById('form');
 var input = document.getElementById('input');
+
+//username has been set inside id from Head-Tag.
 var username = document.getElementsByTagName('head')[0].id;
 
 //*Join Room
@@ -17,6 +20,7 @@ form.addEventListener('submit', function (event) {
 socket.on('chat message', function (msg) {
     console.log(msg);
     var cssClass;
+    //Checking if the user from the message is the same as own username
     if (msg.username == username) cssClass = "myMessage";
     else cssClass = "hisMessage";
     outputMessageToHTML(cssClass, `<p class="meta"><b>${msg.username}</b>: <span>${msg.time}</span><p/> <p class="bubble">${msg.text}</p>`);
@@ -32,5 +36,9 @@ function outputMessageToHTML(cssClass, htmlText) {
     item.classList.add(cssClass);
     item.innerHTML = htmlText;
     messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
+    messageContainer.scrollTo({
+        left: 0,
+        top: messageContainer.scrollHeight,
+        behavior: 'smooth'
+    });
 }
