@@ -1,6 +1,6 @@
 # HowRU
 
-INSTALLING:
+# INSTALLING:
 ============
 1. Install Nodejs (https://nodejs.dev/)
 2. Copy Repo to VSCode
@@ -8,7 +8,7 @@ INSTALLING:
 4. Run command: npm install -g nodemon
 5. Run command: npm update
 ============
-STARTING:
+# STARTING:
 ============
 1. Open VSCode Terminal
 2. Run command: npm start
