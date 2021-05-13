@@ -16,6 +16,13 @@ form.addEventListener('submit', function (event) {
     socket.emit('chat message', input.value);
     input.value = '';
 });
+socket.on('load history', (msg) => {
+    var cssClass;
+    //Checking if the user from the message is the same as own username
+    if (msg.username == username) cssClass = "myMessage";
+    else cssClass = "hisMessage";
+    outputMessageToHTML(cssClass, `<p class="meta"><b>${msg.username}</b>: <span>${msg.time}</span><p/> <p class="bubble">${msg.text}</p>`, 'auto');
+});
 
 socket.on('chat message', function (msg) {
     console.log(msg);
@@ -23,15 +30,15 @@ socket.on('chat message', function (msg) {
     //Checking if the user from the message is the same as own username
     if (msg.username == username) cssClass = "myMessage";
     else cssClass = "hisMessage";
-    outputMessageToHTML(cssClass, `<p class="meta"><b>${msg.username}</b>: <span>${msg.time}</span><p/> <p class="bubble">${msg.text}</p>`);
+    outputMessageToHTML(cssClass, `<p class="meta"><b>${msg.username}</b>: <span>${msg.time}</span><p/> <p class="bubble">${msg.text}</p>`, 'smooth');
 });
 
 socket.on('broadcast', function (msg) {
     console.log(msg);
-    outputMessageToHTML('broadcast', `<p class="meta">${msg.username}: <span>${msg.time}</span><p/> <p>${msg.text}</p>`);
+    outputMessageToHTML('broadcast', `<p class="meta">${msg.username}: <span>${msg.time}</span><p/> <p>${msg.text}</p>`, 'smooth');
 });
 
-function outputMessageToHTML(cssClass, htmlText) {
+function outputMessageToHTML(cssClass, htmlText, behavior) {
     var item = document.createElement('li');
     item.classList.add(cssClass);
     item.innerHTML = htmlText;
@@ -39,6 +46,6 @@ function outputMessageToHTML(cssClass, htmlText) {
     messageContainer.scrollTo({
         left: 0,
         top: messageContainer.scrollHeight,
-        behavior: 'smooth'
+        behavior: behavior
     });
 }

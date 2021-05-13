@@ -1,27 +1,33 @@
-const users = [];
+const UserSchema = require('../models/UserSchema');
+const mongoose = require('mongoose');
+const dbconnect = require('./dbconnect');
 
-function createUser(id, username, email, password) {
-    const user = {
-        id,
-        username,
-        email,
-        password
-    };
-    users.push(user);
+function createUser(username, email, password) {
+
+    let user = new UserSchema({
+        _id: new mongoose.Types.ObjectId(),
+        username: username,
+        email: email,
+        password: password
+    });
+    schemaUser.save();
+    console.log("User saved to Database");
 
     return user;
 }
 
-function getCurrentUser(id) {
-    return users.find(user => user.id === id);
+function getUserByID(_id) {
+    return UserSchema.findById(_id);
 }
 
-function getUsers(){
-    return users;
+function getUserByEmail(email) {
+    return UserSchema.findOne({
+        'email': email
+    });
 }
 
 module.exports = {
     createUser,
-    getCurrentUser,
-    getUsers
+    getUserByID,
+    getUserByEmail
 }

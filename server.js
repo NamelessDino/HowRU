@@ -11,6 +11,7 @@ const connect = require('./utils/dbconnect');
 const session = require('express-session');
 
 //! Variables and Functions
+const moment = require('moment')
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const flash = require('express-flash');
@@ -19,9 +20,7 @@ const MethodOverride = require('method-override');
 const formatMessage = require('./utils/messages');
 const Chat = require('./models/ChatSchema');
 const {
-    createUser,
-    getCurrentUser,
-    getUsers
+    createUser
 } = require('./utils/users');
 
 //Password encryption with bcrypt
@@ -30,11 +29,9 @@ const bcrypt = require('bcrypt');
 // Authentication handling with passport
 const initializePassport = require('./passport-config.js');
 initializePassport(
-    passport,
-    email => getUsers().find(user => user.email === email),
-    id => getUsers().find(user => user.id === id)
+    passport
 );
-const broadcast = 'Broadcast';
+const broadcastName = 'Broadcast';
 var user = {};
 
 //! Code
@@ -54,8 +51,6 @@ app.use(passport.session());
 app.use(MethodOverride('_method'));
 app.use('/css', express.static(path.join(__dirname, 'public/css')));
 app.use('/js', express.static(path.join(__dirname, 'public/js')));
-app.use('/fa-css', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/css')));
-app.use('/fa-js', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/js')));
 
 //* Routes
 // Handling URLs
@@ -85,7 +80,6 @@ app.route("/register")
             // Hashing the password of the newly created user
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             createUser(
-                Date.now().toString(),
                 req.body.username,
                 req.body.email,
                 hashedPassword
@@ -118,12 +112,19 @@ io.on('connection', function (socket) {
     // Emitting a join Room Signal which notifies all users, which user joined the room
     socket.on("JoinRoom", () => {
         console.log('Room Joined');
-        socket.broadcast.emit('broadcast', formatMessage(broadcast, `${username} has joined the Chat...`));
+        socket.broadcast.emit('broadcast', formatMessage(broadcastName, moment(), `${username} has joined the Chat...`));
+
+        Chat.find({'roomName': 'Test'}).then(doc => {
+            Object.entries(doc).forEach((entry) => {
+                const [key, value] = entry;
+                io.emit('load history', formatMessage(value.sender, moment(value.date), value.message));
+              });
+        });
     });
 
     // Emitting a chat message to the front-end
     socket.on('chat message', function (msg) {
-        io.emit('chat message', formatMessage(username, msg));
+        io.emit('chat message', formatMessage(username, moment(), msg));
         connect.then(function (db) {
             console.log("connection to database while receiving message");
             console.log(`Raum: ${room}, Sender: ${username}, Message: ${msg}`)
@@ -133,12 +134,12 @@ io.on('connection', function (socket) {
                 message: msg
             });
             chatMessage.save();
-        })
+        });
     });
 
     // Emitting a disconnect signal which notifies all users, which user left the room
     socket.on('disconnect', function () {
-        socket.broadcast.emit('broadcast', formatMessage(broadcast, `${username} has left the Chat...`));
+        socket.broadcast.emit('broadcast', formatMessage(broadcastName, moment(), `${username} has left the Chat...`));
     });
 });
 

@@ -20,6 +20,7 @@ body {
 }
 
 #header {
+  font-weight: bold !important;
   background-color: #fff;
   font-family: "Bad Script", bold;
   border-bottom: 5px solid #333;
@@ -42,7 +43,7 @@ main{
 }
 .navbar-nav{
   list-style: none;
-  padding: 5;
+  padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -64,16 +65,16 @@ main{
   height: 5rem;
   text-decoration: none;
 }
-.nav-link svg {
-  min-width: 2rem;
-  margin: 0 1.5rem
-}
 .link-text {
   display: none;
   margin-left: 1rem;
 }
+.nav-link svg {
+  min-width: 2rem;
+  margin: 0 1.5rem
+}
 .navbar:hover{
-  width: 15rem;
+  width: 16rem;
 }
 .navbar:hover .link-text{
   display: block;
