@@ -3,10 +3,7 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const UserSchema = require('./models/UserSchema');
 const {
-    createUser,
-    getUserByID,
     getUserByEmail,
-    getUsers
 } = require('./utils/users');
 
 function initialize(passport) {
@@ -21,13 +18,16 @@ function initialize(passport) {
                     else done(null, false, {
                         message: 'Password incorrect'
                     });
-                } catch (e) {
-                    done(e);
+                } catch (err) {
+                    console.log(err);
+                    return done(err);
                 }
             })
             .catch(err => {
                 console.log(err);
-            })
+                return done(err);
+            });
+
     }
     passport.use(new LocalStrategy({
             usernameField: 'email'

@@ -56,11 +56,15 @@ app.use('/js', express.static(path.join(__dirname, 'public/js')));
 // Handling URLs
 
 app.get("/", checkAuthenticated, (req, res) => {
-    user = req.user;
-    res.render('index.ejs', {name: user.username})
+    user = {username: req.user.username, admin: req.user.admin};
+    res.render('index.ejs', {user: user})
 });
 app.get("/chat", checkAuthenticated, (req, res) => {
-    res.render('chat.ejs', {name: user.username});
+    res.render('chat.ejs', {user: user});
+});
+app.get("/admin", checkAuthenticated, (req, res) => {
+    if(req.user.admin) res.render('admin.ejs', {user: user});
+    else res.redirect('/');
 });
 app.route("/login")
     .get(checkNotAuthenticated, (req, res) => {
@@ -77,6 +81,7 @@ app.route("/register")
     })
     .post(checkNotAuthenticated, async (req, res) => {
         try {
+            console.log("try to register User")
             // Hashing the password of the newly created user
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             createUser(
@@ -88,7 +93,6 @@ app.route("/register")
         } catch {
             res.redirect('/register')
         }
-        console.log(getUsers());
     });
 
     app.delete("/logout", (req, res) => {
