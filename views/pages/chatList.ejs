@@ -1,0 +1,15 @@
+<title>HowRU - Chat List</title>
+<%- include('../partials/navbar.ejs') %>
+<main>
+    <%- include('../partials/header.ejs') %>
+    <div class="container">
+        <h1>Hello <%= user.username %>,</h1>
+        <h3>Welcome to the Chatlist</h3>
+        <form action="/chat/Test" autocomplete="on" method="GET">
+            <button type="submit" class="btn">Test</button>
+        </form>
+        <form action="/chat/moin" autocomplete="on" method="GET">
+            <button type="submit" class="btn">moin</button>
+        </form>
+    </div>
+</main>

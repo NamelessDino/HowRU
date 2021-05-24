@@ -11,12 +11,12 @@ function initialize(passport) {
         getUserByEmail(email)
             .then(async user => {
                 if (!user) return done(null, false, {
-                    message: 'No User with that E-Mail found'
+                    message: 'E-Mail oder Passwort ist inkorrekt'
                 });
                 try {
                     if (await bcrypt.compare(password, user.password)) return done(null, user);
                     else done(null, false, {
-                        message: 'Password incorrect'
+                        message: 'E-Mail oder Passwort ist inkorrekt'
                     });
                 } catch (err) {
                     console.log(err);

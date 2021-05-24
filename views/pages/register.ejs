@@ -1,0 +1,22 @@
+<title>HowRU - Register</title>
+<%- include('../partials/header.ejs') %>
+<div class="container overflow-auto">
+    <div class="container">
+        <h1 class="text-center">Registrieren</h1>
+        <form action="/register" autocomplete="off" method="POST">
+            <div class="form-control">
+                <%- include('../partials/messages.ejs')%>
+                <label for="username">Benutzername</label>
+                <input type="text" name="username" id="username" placeholder="Benutername..." value="<%= typeof email != 'undefined' ? username : '' %>"/>
+                <label for="email">E-Mail</label>
+                <input type="email" name="email" id="email" placeholder="E-Mail..." value="<%= typeof email != 'undefined' ? email : '' %>"/>
+                <label for="password">Passwort</label>
+                <input type="password" name="password" id="password" placeholder="Passwort..."/>
+                <label for="password">Passwort bestätigen</label>
+                <input type="password" name="password2" id="password" placeholder="Passwort..."/>
+                <span>Du hast bereits einen Account?: <a href="/login">Anmelden</a></span>
+            </div>
+            <button type="submit" class="loginButton">Registrieren</button>
+        </form>
+    </div>
+</div>

@@ -4,38 +4,41 @@ var messages = document.getElementById('message-box');
 var form = document.getElementById('form');
 var input = document.getElementById('input');
 
-//username has been set inside id from Head-Tag.
-var username = document.getElementsByTagName('head')[0].id;
+
 
 //*Join Room
-console.log(username);
-socket.emit("JoinRoom");
+socket.emit("JoinRoom", username, room);
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     if (!input.value) return;
-    socket.emit('chat message', input.value);
+    socket.emit('chat message', {
+        name: username,
+        email: email,
+        message: input.value,
+        room: room
+    });
     input.value = '';
 });
 socket.on('load history', (msg) => {
     var cssClass;
     //Checking if the user from the message is the same as own username
-    if (msg.username == username) cssClass = "myMessage";
+    if (msg.email == email) cssClass = "myMessage";
     else cssClass = "hisMessage";
-    outputMessageToHTML(cssClass, `<p class="meta"><b>${msg.username}</b>: <span>${msg.time}</span><p/> <p class="bubble">${msg.text}</p>`, 'auto');
+    outputMessageToHTML(cssClass, `<p class="meta"><b>${msg.username}</b>: <span>${msg.time}</span><p/> <p class="bubble">${msg.message}</p>`, 'auto');
 });
 
 socket.on('chat message', function (msg) {
     console.log(msg);
     var cssClass;
     //Checking if the user from the message is the same as own username
-    if (msg.username == username) cssClass = "myMessage";
+    if (msg.email == email) cssClass = "myMessage";
     else cssClass = "hisMessage";
-    outputMessageToHTML(cssClass, `<p class="meta"><b>${msg.username}</b>: <span>${msg.time}</span><p/> <p class="bubble">${msg.text}</p>`, 'smooth');
+    outputMessageToHTML(cssClass, `<p class="meta"><b>${msg.username}</b>: <span>${msg.time}</span><p/> <p class="bubble">${msg.message}</p>`, 'smooth');
 });
 
 socket.on('broadcast', function (msg) {
     console.log(msg);
-    outputMessageToHTML('broadcast', `<p class="meta">${msg.username}: <span>${msg.time}</span><p/> <p>${msg.text}</p>`, 'smooth');
+    outputMessageToHTML('broadcast', `<p class="meta">${msg.username}: <span>${msg.time}</span><p/> <p>${msg.message}</p>`, 'smooth');
 });
 
 function outputMessageToHTML(cssClass, htmlText, behavior) {
