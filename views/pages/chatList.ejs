@@ -5,11 +5,22 @@
     <div class="container">
         <h1>Hello <%= user.username %>,</h1>
         <h3>Welcome to the Chatlist</h3>
-        <form action="/chat/Test" autocomplete="on" method="GET">
-            <button type="submit" class="btn">Test</button>
+
+        <% if(typeof rooms != 'undefined') { %>
+        <% console.log(rooms) %>
+        <% rooms.forEach(room => { %>
+        <form action="/chat/<%= room.name %>" autocomplete="on" method="GET">
+            <button class="loginButton" type="submit" class="btn"><%= room.name %></button>
         </form>
-        <form action="/chat/moin" autocomplete="on" method="GET">
-            <button type="submit" class="btn">moin</button>
+        <% }); %>
+        <% } %>
+        <form action="/chat" autocomplete="on" method="POST">
+            <div class="form-control">
+                <%- include('../partials/messages.ejs') %>
+                <label for="email">Raumname</label>
+                <input type="text" name="roomName" id="roomName" placeholder="Raumname..." required />
+                <button type="submit" class="loginButton">Raum erstellen</button>
+            </div>
         </form>
     </div>
 </main>
