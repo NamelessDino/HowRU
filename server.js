@@ -28,6 +28,11 @@ const {
     createUser,
     getUserByEmail
 } = require('./utils/users');
+const {
+    createRoom,
+    getRoomByName,
+    getRooms
+} = require('./utils/rooms');
 
 //Password encryption with bcrypt
 const bcrypt = require('bcrypt');
@@ -68,14 +73,21 @@ app.use(MethodOverride('_method'));
 app.get("/", checkAuthenticated, (req, res) => {
     res.render('./pages/index.ejs', {
         user: formatUser(req.user)
-    })
-});
-//Rendering Chat Page and checking if User is authenticated
-app.get("/chat", checkAuthenticated, (req, res) => {
-    res.render('./pages/chatList.ejs', {
-        user: formatUser(req.user)
     });
 });
+//Rendering Chat Page and checking if User is authenticated
+app.route("/chat")
+    .get(checkAuthenticated, async (req, res) => {
+        let rooms = await getRooms();
+        res.render('./pages/chatList.ejs', {
+            user: formatUser(req.user),
+            rooms: rooms
+        });
+    })
+    .post(checkAuthenticated, (req, res) => {
+        createRoom(req.body.roomName);
+        res.redirect("/chat")
+    })
 //Rendering Chat Room and checking if User is authenticated
 //:roomName is a Parameter and can be used to create multiple Chat-Rooms
 app.get("/chat/:roomName", checkAuthenticated, (req, res) => {
