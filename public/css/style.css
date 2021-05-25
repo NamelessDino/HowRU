@@ -24,9 +24,11 @@ body {
   background-color: #fff;
   font-family: "Bad Script", bold;
   border-bottom: 5px solid #333;
-  height: 10vh;
+  min-height: 20px;
   padding: 0.5rem;
   z-index: 2;
+  font-size: 2.5rem;
+  font-weight: bolder;
 }
 
 main{

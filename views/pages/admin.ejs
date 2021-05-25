@@ -1,8 +1,22 @@
+<title>HowRU - Betreiberansicht</title>
 <%- include('../partials/navbar.ejs') %>
 <main>
     <%- include('../partials/header.ejs') %>
     <div class="container">
-        <h1>Hello <%= user.username %>,</h1>
-        <h3>You have successfully logged into the Admin Site</h3>
+        <h1 class="text-center">Betreiberansicht</h1>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Anzahl registrierter User
+              <span class="badge bg-primary rounded-pill"><%= usercount %></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Anzahl erstellter Chaträume
+              <span class="badge bg-primary rounded-pill"><%= roomcount %></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Anzahl an versendeten Narichten
+              <span class="badge bg-primary rounded-pill">0</span>
+            </li>
+          </ul>
     </div>
 </main>

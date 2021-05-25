@@ -26,7 +26,8 @@ const {
 const Chat = require('./models/ChatSchema');
 const {
     createUser,
-    getUserByEmail
+    getUserByEmail,
+    getUsers
 } = require('./utils/users');
 const {
     createRoom,
@@ -97,10 +98,14 @@ app.get("/chat/:roomName", checkAuthenticated, (req, res) => {
     });
 });
 //Rendering Admin Page and checking if User is authenticated
-app.get("/admin", checkAuthenticated, (req, res) => {
+app.get("/admin", checkAuthenticated, async (req, res) => {
+    roomcount = (await getRooms()).length;
+    usercount = (await getUsers()).length;
     //Checking whether a User has admin rights or nor
     if (req.user.admin) res.render('./pages/admin.ejs', {
-        user: formatUser(req.user)
+        user: formatUser(req.user),
+        roomcount: roomcount,
+        usercount: usercount
     });
     else res.redirect('/');
 });
