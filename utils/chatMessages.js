@@ -29,7 +29,6 @@ async function getMessagesFromRoom(roomName) {
             });
         });
     });
-    console.log(chatArray);
     return chatArray;
 }
 
@@ -48,7 +47,7 @@ async function getMessages() {
                 });
             });
         });
-    console.log(chatArray);
+        
     return chatArray;
 }
 

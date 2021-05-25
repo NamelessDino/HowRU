@@ -4,34 +4,38 @@
     <%- include('../partials/header.ejs') %>
     <div class="container">
         <h1 class="text-center">Chatlist</h1>
-        <% if(typeof rooms != 'undefined') { %>
+        <% if(rooms.length > 0) { %>
         <ul class="list-group">
             <% rooms.forEach(room => { %>
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <%= room.name %>
-                <form id="join<%= room.name %>" action="/chat/<%= room.name %>" method="GET">
-                    <a href="javascript:;" onclick="document.getElementById('join<%= room.name %>').submit();">
-                        <span class="badge bg-success rounded-pill">
-                            Beitreten
-                        </span>
-                    </a>
-                </form>
+                <div class="btn-group" role="group">
+                    <% if(user.admin || (room.owner.username === user.username)) {%>
+                    <form id="delete<%= room.name %>" action="/chat/<%= room.name %>?_method=DELETE" method="POST"
+                        class="text-right">
+                        <button type="submit" class="btn btn-danger btn-sm">Löschen</button>
+                    </form>
+                    <%}%>
+                    <form id="join<%= room.name %>" action="/chat/<%= room.name %>" method="GET" class="text-right">
+                    <button type="submit" class="btn btn-dark btn-sm">Beitreten</button>
+                    </form>
+                </div>
             </li>
             <% }); %>
         </ul>
+        <% var randRoom = rooms[Math.floor(Math.random() * rooms.length)] %>
+        <form action="/chat/<%= randRoom.name %>" method="GET">
+            <div class="form-control">
+                <button type="submit" class="loginButton bg-dark">Zufälligem Raum beitreten</button>
+            </div>
+        </form>
         <% } %>
         <form action="/chat" autocomplete="off" method="POST">
             <div class="form-control">
                 <%- include('../partials/messages.ejs') %>
                 <label for="email">Raumname</label>
                 <input type="text" name="roomName" id="roomName" placeholder="Raumname..." required />
-                <button type="submit" class="loginButton">Raum erstellen</button>
-            </div>
-        </form>
-        <% var randRoom = rooms[Math.floor(Math.random() * rooms.length)] %>
-        <form action="/chat/<%= randRoom.name %>" method="GET">
-            <div class="form-control">
-                <button type="submit" class="loginButton">Zufälligem Raum beitreten</button>
+                <button type="submit" class="loginButton bg-dark">Raum erstellen</button>
             </div>
         </form>
     </div>

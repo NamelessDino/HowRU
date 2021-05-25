@@ -8,6 +8,10 @@ const RoomSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
+    },
+    owner: {
+        username: String,
+        email: String
     }
 });
 

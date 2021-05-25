@@ -62,7 +62,7 @@ main{
 }
 .nav-link {
   display: flex;
-  align-items: center;
+  align-items: left;
   height: 5rem;
   text-decoration: none;
 }
@@ -80,7 +80,6 @@ main{
 .navbar:hover .link-text{
   display: block;
 }
-
 .sticky-top {
   position: fixed;
   top: 0;

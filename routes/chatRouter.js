@@ -37,28 +37,30 @@ router.route('/')
                     rooms: rooms
                 });
             } else {
-                await createRoom(req.body.roomName)
+                await createRoom(req.body.roomName, req.user)
+                res.redirect("/chat");
+            }
+        });
+    })
+
+//Rendering Chat Room and checking if User is authenticated
+//:roomName is a Parameter and can be used to create multiple Chat-Rooms
+router.route("/:roomName")
+    .get(checkAuthenticated, (req, res) => {
+        getRoomByName(req.params.roomName).then((room) => {
+            if (room) {
+                res.render('./pages/chatRoom.ejs', {
+                    user: formatUser(req.user),
+                    room: room.name
+                });
+            } else {
                 res.redirect("/chat");
             }
         });
     })
     .delete(checkAuthenticated, async (req, res) => {
-        if (await deleteRoomByName(req.body.roomName)) console.log("Room Deleted");
+        await deleteRoomByName(req.params.roomName);
+        res.redirect('/chat');
     })
-
-//Rendering Chat Room and checking if User is authenticated
-//:roomName is a Parameter and can be used to create multiple Chat-Rooms
-router.get("/:roomName", checkAuthenticated, (req, res) => {
-    getRoomByName(req.params.roomName).then((room) => {
-        if (room) {
-            res.render('./pages/chatRoom.ejs', {
-                user: formatUser(req.user),
-                room: room.name
-            });
-        } else {
-            res.redirect("/chat");
-        }
-    });
-});
 
 module.exports = router;

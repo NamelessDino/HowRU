@@ -132,7 +132,6 @@ io.on('connection', function (socket) {
     // Emitting a join Room Signal which notifies all users, which user joined the room
     socket.on("JoinRoom", async (username, room) => {
         socket.join(room);
-        console.log(`${username} has joined ${room}`);
         (await getMessagesFromRoom(room)).forEach((entry) => {
             io.to(socket.id).emit('load history', formatMessage(entry.sender.username, entry.sender.email, moment(entry.date), entry.message));
         });
@@ -142,11 +141,7 @@ io.on('connection', function (socket) {
     // Emitting a chat message to the front-end
     socket.on('chat message', function (data) {
         io.in(data.room).emit('chat message', formatMessage(data.name, data.email, moment(), data.message));
-        connect.then(function (db) {
-            console.log("connection to database while receiving message");
-            console.log(`Raum: ${data.room}, Sender: ${data.name}, Message: ${data.message}`)
-            saveMessage(data.room, data.name, data.email, data.message);
-        });
+        saveMessage(data.room, data.name, data.email, data.message);
     });
 });
 
