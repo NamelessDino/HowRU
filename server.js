@@ -23,7 +23,11 @@ const {
     formatMessage,
     formatUser
 } = require('./utils/formatter');
-const Chat = require('./models/ChatSchema');
+const {
+    saveMessage,
+    getMessagesFromRoom,
+    getMessages
+} = require('./utils/chatMessages');
 const {
     createUser,
     getUserByEmail,
@@ -87,11 +91,13 @@ app.use("/chat", require('./routes/chatRouter.js'));
 app.get("/admin", checkAuthenticated, async (req, res) => {
     roomcount = (await getRooms()).length;
     usercount = (await getUsers()).length;
+    messagecount = (await getMessages()).length
     //Checking whether a User has admin rights or nor
     if (req.user.admin) res.render('./pages/admin.ejs', {
         user: formatUser(req.user),
-        roomcount: roomcount,
-        usercount: usercount
+        roomcount,
+        usercount,
+        messagecount
     });
     else res.redirect('/');
 });
@@ -124,18 +130,13 @@ app.use(bodyParser.json);
 //Function on connection to the Websocket
 io.on('connection', function (socket) {
     // Emitting a join Room Signal which notifies all users, which user joined the room
-    socket.on("JoinRoom", (username, room) => {
+    socket.on("JoinRoom", async (username, room) => {
         socket.join(room);
         console.log(`${username} has joined ${room}`);
-        Chat.find({
-            'roomName': room
-        }).then(doc => {
-            Object.entries(doc).forEach((entry) => {
-                const [key, value] = entry;
-                io.to(socket.id).emit('load history', formatMessage(value.sender.username, value.sender.email, moment(value.date), value.message));
-            });
-            io.to(room).emit('broadcast', formatMessage(broadcastName, '', moment(), `${username} has joined the Chat...`));
+        (await getMessagesFromRoom(room)).forEach((entry) => {
+            io.to(socket.id).emit('load history', formatMessage(entry.sender.username, entry.sender.email, moment(entry.date), entry.message));
         });
+        io.to(room).emit('broadcast', formatMessage(broadcastName, '', moment(), `${username} has joined the Chat...`));
     });
 
     // Emitting a chat message to the front-end
@@ -144,15 +145,7 @@ io.on('connection', function (socket) {
         connect.then(function (db) {
             console.log("connection to database while receiving message");
             console.log(`Raum: ${data.room}, Sender: ${data.name}, Message: ${data.message}`)
-            let chatMessage = new Chat({
-                roomName: data.room,
-                sender: {
-                    username: data.name,
-                    email: data.email
-                },
-                message: data.message
-            });
-            chatMessage.save();
+            saveMessage(data.room, data.name, data.email, data.message);
         });
     });
 });

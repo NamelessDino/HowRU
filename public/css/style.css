@@ -24,10 +24,9 @@ body {
   background-color: #fff;
   font-family: "Bad Script", bold;
   border-bottom: 5px solid #333;
-  min-height: 20px;
   padding: 0.5rem;
   z-index: 2;
-  font-size: 2.5rem;
+  font-size: max(4 * (1vw + 1vh) / 2, 12px);
   font-weight: bolder;
 }
 

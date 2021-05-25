@@ -37,13 +37,13 @@ router.route('/')
                     rooms: rooms
                 });
             } else {
-                if (createRoom(req.body.roomName))
-                    res.redirect("/chat");
+                await createRoom(req.body.roomName)
+                res.redirect("/chat");
             }
         });
     })
     .delete(checkAuthenticated, async (req, res) => {
-        if( await deleteRoomByName(req.body.roomName)) console.log("Room Deleted");
+        if (await deleteRoomByName(req.body.roomName)) console.log("Room Deleted");
     })
 
 //Rendering Chat Room and checking if User is authenticated

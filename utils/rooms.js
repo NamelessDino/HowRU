@@ -11,7 +11,6 @@ async function createRoom(name) {
     });
     await room.save();
     console.log(`Room: ${name},  saved to Database`);
-    return true;
 }
 
 function getRoomByName(name) {
