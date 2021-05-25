@@ -20,12 +20,18 @@
             <% }); %>
         </ul>
         <% } %>
-        <form action="/chat" autocomplete="on" method="POST">
+        <form action="/chat" autocomplete="off" method="POST">
             <div class="form-control">
                 <%- include('../partials/messages.ejs') %>
                 <label for="email">Raumname</label>
                 <input type="text" name="roomName" id="roomName" placeholder="Raumname..." required />
                 <button type="submit" class="loginButton">Raum erstellen</button>
+            </div>
+        </form>
+        <% var randRoom = rooms[Math.floor(Math.random() * rooms.length)] %>
+        <form action="/chat/<%= randRoom.name %>" method="GET">
+            <div class="form-control">
+                <button type="submit" class="loginButton">Zufälligem Raum beitreten</button>
             </div>
         </form>
     </div>
