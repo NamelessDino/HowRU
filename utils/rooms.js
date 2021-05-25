@@ -2,16 +2,15 @@ const RoomSchema = require('../models/RoomSchema');
 const mongoose = require('mongoose');
 const dbconnect = require('./dbconnect');
 
-function createRoom(name) {
+async function createRoom(name) {
     console.log("creating Room");
     let room = new RoomSchema({
         _id: new mongoose.Types.ObjectId(),
         name: name
     });
-    room.save();
+    await room.save();
     console.log(`Room: ${name},  saved to Database`);
-
-    return room;
+    return true;
 }
 
 function getRoomByName(name) {

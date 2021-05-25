@@ -34,6 +34,10 @@ const {
     getRoomByName,
     getRooms
 } = require('./utils/rooms');
+const {
+    checkAuthenticated,
+    checkNotAuthenticated
+} = require('./utils/authentificator');
 
 //Password encryption with bcrypt
 const bcrypt = require('bcrypt');
@@ -77,26 +81,8 @@ app.get("/", checkAuthenticated, (req, res) => {
     });
 });
 //Rendering Chat Page and checking if User is authenticated
-app.route("/chat")
-    .get(checkAuthenticated, async (req, res) => {
-        let rooms = await getRooms();
-        res.render('./pages/chatList.ejs', {
-            user: formatUser(req.user),
-            rooms: rooms
-        });
-    })
-    .post(checkAuthenticated, (req, res) => {
-        createRoom(req.body.roomName);
-        res.redirect("/chat")
-    })
-//Rendering Chat Room and checking if User is authenticated
-//:roomName is a Parameter and can be used to create multiple Chat-Rooms
-app.get("/chat/:roomName", checkAuthenticated, (req, res) => {
-    res.render('./pages/chatRoom.ejs', {
-        user: formatUser(req.user),
-        room: req.params.roomName
-    });
-});
+app.use("/chat", require('./routes/chatRouter.js'));
+
 //Rendering Admin Page and checking if User is authenticated
 app.get("/admin", checkAuthenticated, async (req, res) => {
     roomcount = (await getRooms()).length;
@@ -118,71 +104,8 @@ app.route("/login")
         failureRedirect: '/login',
         failureFlash: true
     }));
-app.route("/register")
-    .get(checkNotAuthenticated, (req, res) => {
-        res.render('./pages/register.ejs');
-    })
-    .post(checkNotAuthenticated, (req, res) => {
-        const {
-            username,
-            email,
-            password,
-            password2
-        } = req.body;
-        let errors = [];
-        getUserByEmail(email).then(async (user) => {
-            //Check if email has been registered
-            if (user) {
-                errors.push({
-                    msg: 'Die E-Mail ist bereits registriert'
-                });
-            }
-            //Check if all fields are filled in
-            if (!username || !email || !password || !password2) {
-                errors.push({
-                    msg: 'Bitte füllen Sie alle Felder aus'
-                });
-            }
-            //Check if passwords match
-            if (password !== password2) {
-                errors.push({
-                    msg: 'Passwörter stimmen nicht überein'
-                });
-            }
-            //Check if errors occurred
-            //if true, cancel registration
-            if (errors.length > 0) {
-                res.render('./pages/register.ejs', {
-                    errors,
-                    username,
-                    email
-                });
-            }
-            //if false, proceed with registration
-            else {
-                try {
-                    // Hashing the password of the newly created user
-                    const hashedPassword = await bcrypt.hash(password, 10);
-                    createUser(
-                        username,
-                        email,
-                        hashedPassword
-                    );
-                    req.flash('success_msg', 'Erfolgreich Registriert. Du kannst dich nun mit deiner E-Mail anmelden')
-                    res.redirect('/login');
-                } catch {
-                    errors.push({
-                        msg: 'Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut'
-                    });
-                    res.render('register.ejs', {
-                        errors,
-                        username,
-                        email
-                    });
-                }
-            }
-        });
-    });
+
+app.use("/register", require('./routes/registerRouter.js'));
 
 app.delete("/logout", (req, res) => {
     req.logOut();
@@ -238,17 +161,3 @@ io.on('connection', function (socket) {
 server.listen(port, function () {
     console.log(`Server running on http://localhost:${port}`);
 });
-
-//Checking whether a user is not logged in
-//Preventing not logged in users to enter sites, they are not allowed to
-function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) return next();
-    res.redirect("/login");
-}
-
-//Checking whether a user is already logged in.
-//Preventing a already logged in user to enter the registration or login site
-function checkNotAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) return res.redirect("/");
-    next();
-}
