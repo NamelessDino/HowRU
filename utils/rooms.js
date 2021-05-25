@@ -1,4 +1,5 @@
 const RoomSchema = require('../models/RoomSchema');
+const ChatSchema = require('../models/ChatSchema');
 const mongoose = require('mongoose');
 const dbconnect = require('./dbconnect');
 
@@ -29,8 +30,16 @@ async function getRooms() {
     return roomArray;
 }
 
+async function deleteRoomByName(roomName){
+    await ChatSchema.deleteMany({roomName: roomName}).then(async () => {
+        await RoomSchema.deleteOne({name : roomName})
+    });
+    return true;
+}
+
 module.exports = {
     createRoom,
     getRoomByName,
-    getRooms
+    getRooms,
+    deleteRoomByName
 }

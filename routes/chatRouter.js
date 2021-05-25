@@ -6,7 +6,8 @@ const {
 const {
     createRoom,
     getRoomByName,
-    getRooms
+    getRooms,
+    deleteRoomByName
 } = require('../utils/rooms');
 const {
     checkAuthenticated
@@ -40,7 +41,10 @@ router.route('/')
                     res.redirect("/chat");
             }
         });
-    });
+    })
+    .delete(checkAuthenticated, async (req, res) => {
+        if( await deleteRoomByName(req.body.roomName)) console.log("Room Deleted");
+    })
 
 //Rendering Chat Room and checking if User is authenticated
 //:roomName is a Parameter and can be used to create multiple Chat-Rooms
