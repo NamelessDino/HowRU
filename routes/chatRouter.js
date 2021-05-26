@@ -6,8 +6,11 @@ const {
 const {
     createRoom,
     getRoomByName,
-    getRooms,
-    deleteRoomByName
+    getAllRooms,
+    getActiveRooms,
+    setRoomInactive,
+    getInactiveRooms,
+    deleteRoomByName,
 } = require('../utils/rooms');
 const {
     checkAuthenticated
@@ -15,7 +18,7 @@ const {
 
 router.route('/')
     .get(checkAuthenticated, async (req, res) => {
-        let rooms = await getRooms();
+        let rooms = await getActiveRooms();
         res.render('./pages/chatList.ejs', {
             user: formatUser(req.user),
             rooms: rooms
@@ -24,18 +27,9 @@ router.route('/')
     .post(checkAuthenticated, (req, res) => {
         let errors = [];
         getRoomByName(req.body.roomName).then(async (room) => {
-            let rooms = await getRooms();
             if (room) {
-                errors.push({
-                    msg: 'Raum existiert bereits'
-                });
-            }
-            if (errors.length > 0) {
-                res.render('./pages/chatList.ejs', {
-                    errors,
-                    user: formatUser(req.user),
-                    rooms: rooms
-                });
+                req.flash('error_msg', 'Raum existiert bereits')
+                res.redirect('/chat');
             } else {
                 await createRoom(req.body.roomName, req.user)
                 res.redirect("/chat");

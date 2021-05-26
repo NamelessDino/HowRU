@@ -41,28 +41,33 @@ main {
   margin-left: 5rem;
 }
 
+.sticky-top {
+  position: fixed;
+  top: 0;
+}
+
 .navbar {
-  color: #fff;
   width: 5rem;
   height: 100vh;
-  background-color: #333;
   position: fixed !important;
-  transition: width 200ms ease;
   z-index: 4;
+  background-color: #333;
+  transition: width 200ms ease;
+  
 }
 
 .navbar-nav {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   align-items: center !important;
   height: 100%;
 }
 
 .navbar-item {
-  width: 100%;
+  width: 100% !important;
 }
 
 .navbar-item a {
@@ -74,20 +79,21 @@ main {
 }
 
 .nav-link {
-  display: flex;
-  align-items: left;
-  height: 5rem;
+  display: flex !important;
+  align-items: center !important;
+  height: 5rem !important;
   text-decoration: none;
 }
 
 .link-text {
   display: none;
-  margin-left: 1rem;
+  margin-left: 1rem !important;
 }
 
-.nav-link svg {
-  min-width: 2rem;
-  margin: 0 1.5rem
+.nav-link i {
+  min-width: 3rem !important;
+  margin: 0 1.5rem;
+  font-size: xx-large;
 }
 
 .navbar:hover {
@@ -96,9 +102,4 @@ main {
 
 .navbar:hover .link-text {
   display: block;
-}
-
-.sticky-top {
-  position: fixed;
-  top: 0;
 }

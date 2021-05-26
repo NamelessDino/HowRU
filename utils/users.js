@@ -8,8 +8,7 @@ function createUser(username, email, password) {
         _id: new mongoose.Types.ObjectId(),
         username: username,
         email: email,
-        password: password,
-        admin: false
+        password: password
     });
     user.save();
     console.log("User saved to Database");

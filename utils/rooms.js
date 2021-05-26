@@ -21,9 +21,39 @@ function getRoomByName(name) {
     })
 }
 
-async function getRooms() {
+async function getAllRooms() {
     var roomArray = [];
     await RoomSchema.find().then((rooms) => {
+        rooms.forEach(function (room) {
+            roomArray.push({
+                name: room.name,
+                owner: room.owner
+            });
+        });
+    });
+    return roomArray;
+}
+
+async function getActiveRooms() {
+    var roomArray = [];
+    await RoomSchema.find({
+        inactive: false
+    }).then((rooms) => {
+        rooms.forEach(function (room) {
+            roomArray.push({
+                name: room.name,
+                owner: room.owner
+            });
+        });
+    });
+    return roomArray;
+}
+
+async function getInactiveRooms() {
+    var roomArray = [];
+    await RoomSchema.find({
+        inactive: true
+    }).then((rooms) => {
         rooms.forEach(function (room) {
             roomArray.push({
                 name: room.name,
@@ -45,9 +75,25 @@ async function deleteRoomByName(roomName) {
     return true;
 }
 
+async function setRoomInactive(name) {
+    const room = await RoomSchema.findOne({
+        'name': name
+    });
+    room.overwrite({
+        '_id': room._id,
+        'name': room.name,
+        'owner': room.owner,
+        'inactive': true
+    });
+    await room.save();
+}
+
 module.exports = {
     createRoom,
     getRoomByName,
-    getRooms,
-    deleteRoomByName
+    getAllRooms,
+    getActiveRooms,
+    getInactiveRooms,
+    deleteRoomByName,
+    setRoomInactive
 }

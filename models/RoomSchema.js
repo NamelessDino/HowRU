@@ -12,6 +12,10 @@ const RoomSchema = mongoose.Schema({
     owner: {
         username: String,
         email: String
+    },
+    inactive: {
+        type: Boolean,
+        default: false
     }
 });
 
