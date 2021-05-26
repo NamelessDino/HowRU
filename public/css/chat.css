@@ -2,6 +2,7 @@
 
 #input-container {
   background-color: #fff;
+  padding: 0.5rem;
   height: 10vh;
   position: fixed;
   bottom: 0;
@@ -23,15 +24,16 @@
   position: fixed;
   display: flex;
   height: 3rem;
-  box-sizing: border-box;
-  border-radius: 5px;
+  width: 90%;
+  min-width: none;
   bottom: 0;
 }
 
 #input {
   border: none;
   padding: 0 1rem;
-  flex-grow: 1;
+  width: 100%;
+  min-width: none;
   border-radius: 2rem;
   margin: 0.25rem;
 }
@@ -79,22 +81,26 @@
 
 .hisMessage {
   max-width: 47%;
+  width: max-content;
   word-wrap: break-word;
   float: left;
 }
 
 .bubble {
   border-radius: 20px;
-  padding: 10px;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  
 }
 
 .myMessage>.bubble {
   background-color: rgb(28, 119, 255);
+  float: right;
   color: #fff;
 }
 
 .hisMessage>.bubble {
   background-color: rgb(214, 214, 214);
+  float: left;
   color: #000;
 }
 

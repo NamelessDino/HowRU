@@ -23,8 +23,7 @@
             </li>
             <% }); %>
         </ul>
-        <% var randRoom = rooms[Math.floor(Math.random() * rooms.length)] %>
-        <form action="/chat/<%= randRoom.name %>" method="GET">
+        <form action="/chat/<%= rooms[Math.floor(Math.random() * rooms.length)].name %>" method="GET">
             <div class="form-control">
                 <button type="submit" class="loginButton bg-dark">Zufälligem Raum beitreten</button>
             </div>

@@ -9,7 +9,6 @@ const io = require('socket.io')(server);
 const port = 3000 || process.env.PORT;
 const connect = require('./utils/dbconnect');
 const session = require('express-session');
-const favicon = require('serve-favicon');
 
 //! Variables and Functions
 const expressLayouts = require('express-ejs-layouts');
@@ -56,7 +55,6 @@ const broadcastName = 'Broadcast';
 //! Code
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
-app.use(favicon(path.join(__dirname, 'favicon.ico')));
 app.use(express.urlencoded({
     extended: false
 }));
