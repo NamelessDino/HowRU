@@ -12,7 +12,6 @@
 }
 
 .loginButton {
-  background-color: #4caf50 !important;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -21,14 +20,13 @@
   width: 100%;
 }
 
-.loginButton:hover {
+button:hover {
   opacity: 0.8;
 }
 
 .cancelbtn {
   width: auto;
   padding: 10px 18px;
-  background-color: #f44336 !important;
   color: white;
   margin: 8px 0;
   border: none;

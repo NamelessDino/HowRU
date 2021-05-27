@@ -8,8 +8,7 @@ function createUser(username, email, password) {
         _id: new mongoose.Types.ObjectId(),
         username: username,
         email: email,
-        password: password,
-        admin: false
+        password: password
     });
     user.save();
     console.log("User saved to Database");
@@ -27,8 +26,19 @@ function getUserByEmail(email) {
         })
 }
 
+async function getUsers() {
+    var userArray = [];
+    await UserSchema.find().then((users) => {
+        users.forEach(function (user) {
+            userArray.push({username: user.username});
+        });
+    });
+    return userArray;
+}
+
 module.exports = {
     createUser,
     getUserByID,
-    getUserByEmail
+    getUserByEmail,
+    getUsers
 }

@@ -2,21 +2,21 @@
 <%- include('../partials/header.ejs') %>
 <div class="container overflow-auto">
     <div class="container">
-        <h1 class="text-center">Registrieren</h1>
+        <h1 class="text-center"><i class="fas fa-sign-in-alt"></i> Registrieren</h1>
         <form action="/register" autocomplete="off" method="POST">
             <div class="form-control">
                 <%- include('../partials/messages.ejs')%>
-                <label for="username">Benutzername</label>
+                <label for="username"><i class="fas fa-user"></i> Benutzername</label>
                 <input type="text" name="username" id="username" placeholder="Benutername..." value="<%= typeof email != 'undefined' ? username : '' %>"/>
-                <label for="email">E-Mail</label>
+                <label for="email"><i class="far fa-envelope"></i> E-Mail</label>
                 <input type="email" name="email" id="email" placeholder="E-Mail..." value="<%= typeof email != 'undefined' ? email : '' %>"/>
-                <label for="password">Passwort</label>
+                <label for="password"><i class="fas fa-lock"></i> Passwort</label>
                 <input type="password" name="password" id="password" placeholder="Passwort..."/>
-                <label for="password">Passwort bestätigen</label>
+                <label for="password"><i class="fas fa-lock"></i> Passwort bestätigen</label>
                 <input type="password" name="password2" id="password" placeholder="Passwort..."/>
                 <span>Du hast bereits einen Account?: <a href="/login">Anmelden</a></span>
             </div>
-            <button type="submit" class="loginButton">Registrieren</button>
+            <button type="submit" class="loginButton bg-success">Registrieren</button>
         </form>
     </div>
 </div>

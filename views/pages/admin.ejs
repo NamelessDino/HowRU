@@ -1,8 +1,90 @@
+<title>HowRU - Betreiberansicht</title>
 <%- include('../partials/navbar.ejs') %>
 <main>
-    <%- include('../partials/header.ejs') %>
-    <div class="container">
-        <h1>Hello <%= user.username %>,</h1>
-        <h3>You have successfully logged into the Admin Site</h3>
+  <%- include('../partials/header.ejs') %>
+  <div class="container">
+    <h1 class="text-center"><i class="fas fa-chart-line"></i> Dashboard</h1>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span><i class="fas fa-users"></i> Anzahl registrierter User</span>
+        <span class="badge bg-primary rounded-pill"><%= usercount %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span><i class="fas fa-comments"></i> Anzahl erstellter Chaträume</span>
+        <span class="badge bg-primary rounded-pill"><%= roomcount %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span><i class="fas fa-envelope-square"></i> Anzahl an verschickten Nachrichten</span>
+        <span class="badge bg-primary rounded-pill"><%= messagecount %></span>
+      </li>
+    </ul>
+    <br>
+    <h3>Chat Analytik</h3>
+    <div class="progress" style="height: 40px;">
+      <% if(roomcount > 0) { %>
+
+      <% if(roomcount >= 1) {%>
+      <% var perc = ((roomWithChat[0].messagecount / messagecount) * 100) %>
+      <% if (messagecount == 0) {perc = 100/roomcount} %>
+      <div type="button" class="progress-bar bg-success" role="progressbar" style="width: <%= perc %>%"
+        aria-valuenow="<%= roomWithChat[0].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
+        data-bs-toggle="tooltip" data-bs-placement="bottom"
+        title="<%= roomWithChat[0].name %>: <%= roomWithChat[0].messagecount %> Nachrichten">
+        <%= roomWithChat[0].name %></div>
+      <%}%>
+
+      <% if(roomcount >= 2) {%>
+      <% var perc = ((roomWithChat[1].messagecount / messagecount) * 100) %>
+      <% if (messagecount == 0) {perc = 1 * (100/roomcount)} %>
+      <div type="button" class="progress-bar bg-info" role="progressbar" style="width: <%= perc %>%"
+        aria-valuenow="<%= roomWithChat[1].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
+        data-bs-toggle="tooltip" data-bs-placement="bottom"
+        title="<%= roomWithChat[1].name %>: <%= roomWithChat[1].messagecount %> Nachrichten">
+        <%= roomWithChat[1].name %></div>
+      <%}%>
+
+      <% if(roomcount >= 3) {%>
+      <% var perc = ((roomWithChat[2].messagecount / messagecount) * 100) %>
+      <% if (messagecount == 0) {perc = 1 * (100/roomcount)} %>
+      <div type="button" class="progress-bar bg-warning" role="progressbar" style="width: <%= perc %>%"
+        aria-valuenow="<%= roomWithChat[2].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
+        data-bs-toggle="tooltip" data-bs-placement="bottom"
+        title="<%= roomWithChat[2].name %>: <%= roomWithChat[2].messagecount %> Nachrichten">
+        <%= roomWithChat[2].name %></div>
+      <%}%>
+
+      <% if(roomcount >= 4) {%>
+      <% var perc = ((roomWithChat[3].messagecount / messagecount) * 100) %>
+      <% if (messagecount == 0) {perc = 1 * (100/roomcount)} %>
+      <div type="button" class="progress-bar bg-danger" role="progressbar" style="width: <%= perc %>%"
+        aria-valuenow="<%= roomWithChat[3].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
+        data-bs-toggle="tooltip" data-bs-placement="bottom"
+        title="<%= roomWithChat[3].name %>: <%= roomWithChat[3].messagecount %> Nachrichten">
+        <%= roomWithChat[3].name %></div>
+      <%}%>
+
+      <% if(roomcount == 5) {%>
+      <% var perc = ((roomWithChat[4].messagecount / messagecount) * 100) %>
+      <% if (messagecount == 0) {perc = 1 * (100/roomcount)} %>
+      <div type="button" class="progress-bar" role="progressbar" style="width: <%= perc %>%"
+        aria-valuenow="<%= roomWithChat[4].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
+        data-bs-toggle="tooltip" data-bs-placement="bottom" title="<%= roomWithChat[4].name %>:
+        <%= roomWithChat[4].messagecount %> Nachrichten">
+        <%= roomWithChat[4].name %></div>
+      <%}%>
+
+      <% if(roomcount >= 6) {%>
+      <% var CombinedMessagecount = messagecount - (roomWithChat[3].messagecount + roomWithChat[2].messagecount + roomWithChat[1].messagecount + roomWithChat[0].messagecount) %>
+      <% var perc = 100 - (((roomWithChat[3].messagecount / messagecount) * 100) + ((roomWithChat[2].messagecount / messagecount) * 100) + ((roomWithChat[1].messagecount / messagecount) * 100) + ((roomWithChat[0].messagecount / messagecount) * 100)) %>
+      <% if (messagecount == 0) {perc = (roomcount - 4) * (100/roomcount)} %>
+      <div type="button" class="progress-bar" role="progressbar" style="width: <%= perc %>%"
+        aria-valuenow="<%= CombinedMessagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
+        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sonstige: <%= CombinedMessagecount %> Nachrichten">
+        Sonstige</div>
+      <%}%>
+
+      <%}%>
+
     </div>
+  </div>
 </main>
