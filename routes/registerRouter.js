@@ -65,7 +65,7 @@ router.route('/')
                     errors.push({
                         msg: 'Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuch es erneut'
                     });
-                    res.render('register.ejs', {
+                    res.render('./pages/register.ejs', {
                         errors,
                         username,
                         email
