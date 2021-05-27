@@ -28,15 +28,11 @@ const {
     getMessages
 } = require('./utils/chatMessages');
 const {
-    createUser,
-    getUserByEmail,
     getUsers
 } = require('./utils/users');
 const {
     getAllRooms,
     getAllRoomsWithChatcount,
-    getActiveRooms,
-    getInactiveRooms
 } = require('./utils/rooms');
 const {
     checkAuthenticated,
@@ -89,8 +85,6 @@ app.use("/chat", require('./routes/chatRouter.js'));
 //Rendering Admin Page and checking if User is authenticated
 app.get("/admin", checkAuthenticated, async (req, res) => {
     roomcount = (await getAllRooms()).length;
-    activeRoomCount = (await getActiveRooms()).length;
-    inactiveRoomCount = (await getInactiveRooms()).length;
     usercount = (await getUsers()).length;
     messagecount = (await getMessages()).length;
     roomWithChat = (await getAllRoomsWithChatcount());
@@ -98,8 +92,6 @@ app.get("/admin", checkAuthenticated, async (req, res) => {
     if (req.user.admin) res.render('./pages/admin.ejs', {
         user: formatUser(req.user),
         roomcount,
-        activeRoomCount,
-        inactiveRoomCount: inactiveRoomCount,
         usercount: usercount,
         messagecount: messagecount,
         roomWithChat: roomWithChat

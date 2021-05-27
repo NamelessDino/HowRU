@@ -7,9 +7,6 @@ const {
     createRoom,
     getRoomByName,
     getAllRooms,
-    getActiveRooms,
-    setRoomInactive,
-    getInactiveRooms,
     deleteRoomByID,
 } = require('../utils/rooms');
 const {
@@ -18,7 +15,7 @@ const {
 
 router.route('/')
     .get(checkAuthenticated, async (req, res) => {
-        let rooms = await getActiveRooms();
+        let rooms = await getAllRooms();
         res.render('./pages/chatList.ejs', {
             user: formatUser(req.user),
             rooms: rooms
