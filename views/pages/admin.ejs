@@ -14,7 +14,7 @@
         <span class="badge bg-primary rounded-pill"><%= roomcount %></span>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span><i class="fas fa-envelope-square"></i> Anzahl an versendeten Narichten</span>
+        <span><i class="fas fa-envelope-square"></i> Anzahl an verschickten Nachrichten</span>
         <span class="badge bg-primary rounded-pill"><%= messagecount %></span>
       </li>
     </ul>
@@ -30,7 +30,7 @@
       <div type="button" class="progress-bar bg-success" role="progressbar" style="width: <%= perc %>%;"
         aria-valuenow="<%= roomWithChat[0].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom"
-        title="<%= roomWithChat[0].name %>: <%= roomWithChat[0].messagecount %> Narichten">
+        title="<%= roomWithChat[0].name %>: <%= roomWithChat[0].messagecount %> Nachrichten">
         <%= roomWithChat[0].name %></div>
       <%}%>
 
@@ -41,7 +41,7 @@
       <div type="button" class="progress-bar bg-info" role="progressbar" style="width: <%= perc %>%;"
         aria-valuenow="<%= roomWithChat[1].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom"
-        title="<%= roomWithChat[1].name %>: <%= roomWithChat[1].messagecount %> Narichten">
+        title="<%= roomWithChat[1].name %>: <%= roomWithChat[1].messagecount %> Nachrichten">
         <%= roomWithChat[1].name %></div>
       <%}%>
 
@@ -52,7 +52,7 @@
       <div type="button" class="progress-bar bg-warning" role="progressbar" style="width: <%= perc %>%;"
         aria-valuenow="<%= roomWithChat[2].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom"
-        title="<%= roomWithChat[2].name %>: <%= roomWithChat[2].messagecount %> Narichten">
+        title="<%= roomWithChat[2].name %>: <%= roomWithChat[2].messagecount %> Nachrichten">
         <%= roomWithChat[2].name %></div>
       <%}%>
 
@@ -63,7 +63,7 @@
       <div type="button" class="progress-bar bg-danger" role="progressbar" style="width: <%= perc %>%;"
         aria-valuenow="<%= roomWithChat[3].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom"
-        title="<%= roomWithChat[3].name %>: <%= roomWithChat[3].messagecount %> Narichten">
+        title="<%= roomWithChat[3].name %>: <%= roomWithChat[3].messagecount %> Nachrichten">
         <%= roomWithChat[3].name %></div>
       <%}%>
 
@@ -74,7 +74,7 @@
       <div type="button" class="progress-bar" role="progressbar" style="width: <%= perc %>%;"
         aria-valuenow="<%= roomWithChat[4].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom" title="<%= roomWithChat[4].name %>:
-        <%= roomWithChat[4].messagecount %> Narichten">
+        <%= roomWithChat[4].messagecount %> Nachrichten">
         <%= roomWithChat[4].name %></div>
       <%}%>
 
@@ -85,7 +85,7 @@
       <% console.log(perc) %>
       <div type="button" class="progress-bar" role="progressbar" style="width: <%= perc %>%;"
         aria-valuenow="<%= CombinedMessagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
-        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sonstige: <%= CombinedMessagecount %> Narichten">
+        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sonstige: <%= CombinedMessagecount %> Nachrichten">
         Sonstige</div>
       <%}%>
 
