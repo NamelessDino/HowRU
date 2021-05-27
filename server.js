@@ -135,18 +135,18 @@ app.use(bodyParser.json);
 //Function on connection to the Websocket
 io.on('connection', function (socket) {
     // Emitting a join Room Signal which notifies all users, which user joined the room
-    socket.on("JoinRoom", async (username, room) => {
-        socket.join(room);
-        (await getMessagesFromRoom(room)).forEach((entry) => {
+    socket.on("JoinRoom", async (username, roomName, roomID) => {
+        socket.join(roomName);
+        (await getMessagesFromRoom(roomID)).forEach((entry) => {
             io.to(socket.id).emit('load history', formatMessage(entry.sender.username, entry.sender.email, moment(entry.date), entry.message));
         });
-        io.to(room).emit('broadcast', formatMessage(broadcastName, '', moment(), `${username} has joined the Chat...`));
+        io.to(roomName).emit('broadcast', formatMessage(broadcastName, '', moment(), `${username} has joined the Chat...`));
     });
 
     // Emitting a chat message to the front-end
     socket.on('chat message', function (data) {
-        io.in(data.room).emit('chat message', formatMessage(data.name, data.email, moment(), data.message));
-        saveMessage(data.room, data.name, data.email, data.message);
+        io.in(data.roomName).emit('chat message', formatMessage(data.name, data.email, moment(), data.message));
+        saveMessage(data.roomID, data.name, data.email, data.message);
     });
 });
 

@@ -19,7 +19,7 @@ async function createRoom(name, user) {
 function getRoomByName(name) {
     return RoomSchema.findOne({
         'name': name
-    })
+    });
 }
 
 async function getAllRooms() {
@@ -28,6 +28,7 @@ async function getAllRooms() {
         rooms.forEach(function (room) {
             roomArray.push({
                 name: room.name,
+                id: room._id,
                 owner: room.owner
             });
         });
@@ -38,7 +39,7 @@ async function getAllRoomsWithChatcount() {
     let roomArrayWithChat = [];
     let roomArray = await getAllRooms();
     await asyncForEach(roomArray, async (room) => {
-        let chatArray = await getMessagesFromRoom(room.name);
+        let chatArray = await getMessagesFromRoom(room.id);
         roomArrayWithChat.push({
             name: room.name,
             messagecount: chatArray.length
@@ -78,15 +79,14 @@ async function getInactiveRooms() {
     return roomArray;
 }
 
-async function deleteRoomByName(roomName) {
+async function deleteRoomByID(roomID) {
     await ChatSchema.deleteMany({
-        roomName: roomName
+        'roomID': roomID
     }).then(async () => {
         await RoomSchema.deleteOne({
-            name: roomName
+            '_id': roomID
         })
-    });
-    return true;
+    }).finally(() => {return true});
 }
 
 async function setRoomInactive(name) {
@@ -115,6 +115,6 @@ module.exports = {
     getAllRoomsWithChatcount,
     getActiveRooms,
     getInactiveRooms,
-    deleteRoomByName,
+    deleteRoomByID,
     setRoomInactive
 }
