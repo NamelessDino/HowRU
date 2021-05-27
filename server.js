@@ -33,9 +33,8 @@ const {
     getUsers
 } = require('./utils/users');
 const {
-    createRoom,
-    getRoomByName,
     getAllRooms,
+    getAllRoomsWithChatcount,
     getActiveRooms,
     getInactiveRooms
 } = require('./utils/rooms');
@@ -93,15 +92,17 @@ app.get("/admin", checkAuthenticated, async (req, res) => {
     activeRoomCount = (await getActiveRooms()).length;
     inactiveRoomCount = (await getInactiveRooms()).length;
     usercount = (await getUsers()).length;
-    messagecount = (await getMessages()).length
+    messagecount = (await getMessages()).length;
+    roomWithChat = (await getAllRoomsWithChatcount());
     //Checking whether a User has admin rights or nor
     if (req.user.admin) res.render('./pages/admin.ejs', {
         user: formatUser(req.user),
         roomcount,
         activeRoomCount,
-        inactiveRoomCount,
-        usercount,
-        messagecount
+        inactiveRoomCount: inactiveRoomCount,
+        usercount: usercount,
+        messagecount: messagecount,
+        roomWithChat: roomWithChat
     });
     else res.redirect('/');
 });

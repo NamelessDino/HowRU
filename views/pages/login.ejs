@@ -2,17 +2,17 @@
   <%- include('../partials/header.ejs') %>
   <div class="container overflow-auto">
     <div class="container">
-      <h1 class="text-center">Anmelden</h1>
+      <h1 class="text-center"><i class="fas fa-sign-in-alt"></i> Anmelden</h1>
       <form action="/login" autocomplete="on" method="POST">
         <div class="form-control">
           <%- include('../partials/messages.ejs') %>
-          <label for="email">E-Mail</label>
+          <label for="email"><i class="far fa-envelope"></i> E-Mail</label>
           <input type="email" name="email" id="email" placeholder="E-Mail..." required />
-          <label for="password">Passwort</label>
+          <label for="password"><i class="fas fa-lock"></i> Passwort</label>
           <input type="password" name="password" id="password" placeholder="Passwort..." required />
           <span>Du bestitzt noch keinen Account?: <a href="/register">Registrieren</a></span>
         </div>
-        <button type="submit" class="loginButton">Anmelden</button>
+        <button type="submit" class="loginButton bg-success">Anmelden</button>
       </form>
     </div>
   </div>

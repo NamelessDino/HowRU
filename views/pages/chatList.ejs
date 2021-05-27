@@ -3,21 +3,23 @@
 <main>
     <%- include('../partials/header.ejs') %>
     <div class="container">
-        <h1 class="text-center">Chatlist</h1>
+        <h1 class="text-center"><i class="far fa-comments"></i> Chatlist</h1>
         <% if(rooms.length > 0) { %>
         <ul class="list-group">
             <% rooms.forEach(room => { %>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <%= room.name %>
+                <% var icon = 'fas fa-comment' %>
+                <%if(user.admin || (room.owner.username === user.username)) {icon = 'fas fa-comment-dollar'}%>
+                <span><i class="<%= icon %>"></i> <%= room.name %></span>
                 <div class="btn-group" role="group">
                     <% if(user.admin || (room.owner.username === user.username)) {%>
                     <form id="delete<%= room.name %>" action="/chat/<%= room.name %>?_method=DELETE" method="POST"
                         class="text-right">
-                        <button type="submit" class="btn btn-danger btn-sm">Löschen</button>
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Löschen</button>
                     </form>
                     <%}%>
                     <form id="join<%= room.name %>" action="/chat/<%= room.name %>" method="GET" class="text-right">
-                    <button type="submit" class="btn btn-dark btn-sm">Beitreten</button>
+                    <button type="submit" class="btn btn-dark btn-sm"><i class="fas fa-sign-in-alt"></i> Beitreten</button>
                     </form>
                 </div>
             </li>
@@ -25,16 +27,23 @@
         </ul>
         <form action="/chat/<%= rooms[Math.floor(Math.random() * rooms.length)].name %>" method="GET">
             <div class="form-control">
-                <button type="submit" class="loginButton bg-dark">Zufälligem Raum beitreten</button>
+                <button type="submit" class="loginButton bg-dark">Zufälligem Raum beitreten <i class="fas fa-sign-in-alt"></i></button>
             </div>
         </form>
         <% } %>
         <form action="/chat" autocomplete="off" method="POST">
             <div class="form-control">
                 <%- include('../partials/messages.ejs') %>
-                <label for="email">Raumname</label>
-                <input type="text" name="roomName" id="roomName" placeholder="Raumname..." required />
-                <button type="submit" class="loginButton bg-dark">Raum erstellen</button>
+                <div class="form-group">
+                    <label class="form-label mt-4">Raum erstellen</label>
+                    <div class="form-group">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fas fa-comments"></i></span>
+                        <input type="text" class="form-control bg-secondary border-primary" name="roomName" placeholder="Raumname..." required />
+                        <button type="submit" class="btn-group-text btn btn-primary"><i class="fas fa-plus"></i></button>
+                      </div>
+                    </div>
+                  </div>
             </div>
         </form>
     </div>
