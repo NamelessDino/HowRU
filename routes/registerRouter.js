@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 //Password encryption with bcrypt
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const {
     createUser,
     getUserByEmail

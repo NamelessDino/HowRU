@@ -41,7 +41,7 @@ const {
 } = require('./utils/authentificator');
 
 //Password encryption with bcrypt
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Authentication handling with passport
 const initializePassport = require('./passport-config.js');
