@@ -23,7 +23,6 @@ function getRoomByName(name) {
 }
 
 async function getAllRooms() {
-    console.log("getAllRooms wird gestartet");
     var roomArray = [];
     await RoomSchema.find().then((rooms) => {
         rooms.forEach(function (room) {
@@ -36,12 +35,8 @@ async function getAllRooms() {
     return roomArray;
 }
 async function getAllRoomsWithChatcount() {
-    console.log("getAllRoomsWithChatcount wird gestartet");
-    console.log("roomArrayWithChat wird angelegt");
     let roomArrayWithChat = [];
-    console.log("roomArray wird angelegt");
     let roomArray = await getAllRooms();
-    console.log("roomArray wird durch iteriert");
     await asyncForEach(roomArray, async (room) => {
         let chatArray = await getMessagesFromRoom(room.name);
         roomArrayWithChat.push({
@@ -49,10 +44,7 @@ async function getAllRoomsWithChatcount() {
             messagecount: chatArray.length
         });
     });
-    console.log("roomArray ist fertig iteriert");
-    console.log("return");
     roomArrayWithChat.sort(function(a, b){return b.messagecount - a.messagecount});
-    console.log(roomArrayWithChat);
     return await roomArrayWithChat;
 }
 

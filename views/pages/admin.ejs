@@ -26,8 +26,7 @@
       <% if(roomcount >= 1) {%>
       <% var perc = ((roomWithChat[0].messagecount / messagecount) * 100) %>
       <% if (messagecount == 0) {perc = 100/roomcount} %>
-      <% console.log(perc) %>
-      <div type="button" class="progress-bar bg-success" role="progressbar" style="width: <%= perc %>%;"
+      <div type="button" class="progress-bar bg-success" role="progressbar" style="width: <%= perc %>%"
         aria-valuenow="<%= roomWithChat[0].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom"
         title="<%= roomWithChat[0].name %>: <%= roomWithChat[0].messagecount %> Nachrichten">
@@ -37,8 +36,7 @@
       <% if(roomcount >= 2) {%>
       <% var perc = ((roomWithChat[1].messagecount / messagecount) * 100) %>
       <% if (messagecount == 0) {perc = 1 * (100/roomcount)} %>
-      <% console.log(perc) %>
-      <div type="button" class="progress-bar bg-info" role="progressbar" style="width: <%= perc %>%;"
+      <div type="button" class="progress-bar bg-info" role="progressbar" style="width: <%= perc %>%"
         aria-valuenow="<%= roomWithChat[1].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom"
         title="<%= roomWithChat[1].name %>: <%= roomWithChat[1].messagecount %> Nachrichten">
@@ -48,8 +46,7 @@
       <% if(roomcount >= 3) {%>
       <% var perc = ((roomWithChat[2].messagecount / messagecount) * 100) %>
       <% if (messagecount == 0) {perc = 1 * (100/roomcount)} %>
-      <% console.log(perc) %>
-      <div type="button" class="progress-bar bg-warning" role="progressbar" style="width: <%= perc %>%;"
+      <div type="button" class="progress-bar bg-warning" role="progressbar" style="width: <%= perc %>%"
         aria-valuenow="<%= roomWithChat[2].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom"
         title="<%= roomWithChat[2].name %>: <%= roomWithChat[2].messagecount %> Nachrichten">
@@ -59,8 +56,7 @@
       <% if(roomcount >= 4) {%>
       <% var perc = ((roomWithChat[3].messagecount / messagecount) * 100) %>
       <% if (messagecount == 0) {perc = 1 * (100/roomcount)} %>
-      <% console.log(perc) %>
-      <div type="button" class="progress-bar bg-danger" role="progressbar" style="width: <%= perc %>%;"
+      <div type="button" class="progress-bar bg-danger" role="progressbar" style="width: <%= perc %>%"
         aria-valuenow="<%= roomWithChat[3].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom"
         title="<%= roomWithChat[3].name %>: <%= roomWithChat[3].messagecount %> Nachrichten">
@@ -70,8 +66,7 @@
       <% if(roomcount == 5) {%>
       <% var perc = ((roomWithChat[4].messagecount / messagecount) * 100) %>
       <% if (messagecount == 0) {perc = 1 * (100/roomcount)} %>
-      <% console.log(perc) %>
-      <div type="button" class="progress-bar" role="progressbar" style="width: <%= perc %>%;"
+      <div type="button" class="progress-bar" role="progressbar" style="width: <%= perc %>%"
         aria-valuenow="<%= roomWithChat[4].messagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom" title="<%= roomWithChat[4].name %>:
         <%= roomWithChat[4].messagecount %> Nachrichten">
@@ -82,8 +77,7 @@
       <% var CombinedMessagecount = messagecount - (roomWithChat[3].messagecount + roomWithChat[2].messagecount + roomWithChat[1].messagecount + roomWithChat[0].messagecount) %>
       <% var perc = 100 - (((roomWithChat[3].messagecount / messagecount) * 100) + ((roomWithChat[2].messagecount / messagecount) * 100) + ((roomWithChat[1].messagecount / messagecount) * 100) + ((roomWithChat[0].messagecount / messagecount) * 100)) %>
       <% if (messagecount == 0) {perc = (roomcount - 4) * (100/roomcount)} %>
-      <% console.log(perc) %>
-      <div type="button" class="progress-bar" role="progressbar" style="width: <%= perc %>%;"
+      <div type="button" class="progress-bar" role="progressbar" style="width: <%= perc %>%"
         aria-valuenow="<%= CombinedMessagecount %>" aria-valuemin="0" aria-valuemax="<%= messagecount %>"
         data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sonstige: <%= CombinedMessagecount %> Nachrichten">
         Sonstige</div>

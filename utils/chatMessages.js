@@ -14,7 +14,6 @@ async function saveMessage(roomName, username, email, message) {
     await chatMessage.save();
 }
 async function getMessagesFromRoom(roomName) {
-    console.log("getMessagesFromRoom wird gestartet")
     var chatArray = [];
     await ChatSchema.find({
         roomName: roomName
