@@ -74,22 +74,22 @@
 }
 
 .myMessage {
-  max-width: 47%;
-  word-wrap: break-word;
+  max-width: 51%;
+  width: max-content;
   float: right;
 }
 
 .hisMessage {
-  max-width: 47%;
+  max-width: 51%;
   width: max-content;
-  word-wrap: break-word;
   float: left;
 }
 
 .bubble {
   border-radius: 20px;
   padding: 0.5rem 1rem 0.5rem 1rem;
-  
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .myMessage>.bubble {

@@ -9,6 +9,7 @@ const io = require('socket.io')(server);
 const port = 3000 || process.env.PORT;
 const connect = require('./utils/dbconnect');
 const session = require('express-session');
+const favicon = require('serve-favicon')
 
 //! Variables and Functions
 const expressLayouts = require('express-ejs-layouts');
@@ -25,18 +26,17 @@ const {
 const {
     saveMessage,
     getMessagesFromRoom,
-    getMessages
+    getMessages,
+    getAverageMessagesPerUser
 } = require('./utils/chatMessages');
 const {
-    createUser,
-    getUserByEmail,
-    getUsers
+    getUsers,
+    updateAdminRightsByID,
+    deleteUserbyID
 } = require('./utils/users');
 const {
     getAllRooms,
     getAllRoomsWithChatcount,
-    getActiveRooms,
-    getInactiveRooms
 } = require('./utils/rooms');
 const {
     checkAuthenticated,
@@ -44,7 +44,7 @@ const {
 } = require('./utils/authentificator');
 
 //Password encryption with bcrypt
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Authentication handling with passport
 const initializePassport = require('./passport-config.js');
@@ -54,6 +54,7 @@ initializePassport(
 const broadcastName = 'Broadcast';
 
 //! Code
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({
@@ -86,26 +87,26 @@ app.get("/", checkAuthenticated, (req, res) => {
 //Rendering Chat Page and checking if User is authenticated
 app.use("/chat", require('./routes/chatRouter.js'));
 
-//Rendering Admin Page and checking if User is authenticated
-app.get("/admin", checkAuthenticated, async (req, res) => {
-    roomcount = (await getAllRooms()).length;
-    activeRoomCount = (await getActiveRooms()).length;
-    inactiveRoomCount = (await getInactiveRooms()).length;
-    usercount = (await getUsers()).length;
-    messagecount = (await getMessages()).length;
-    roomWithChat = (await getAllRoomsWithChatcount());
-    //Checking whether a User has admin rights or nor
-    if (req.user.admin) res.render('./pages/admin.ejs', {
+app.get("/user", checkAuthenticated, async (req, res) => {
+    userList = await getUsers();
+    res.render('./pages/userList.ejs', {
         user: formatUser(req.user),
-        roomcount,
-        activeRoomCount,
-        inactiveRoomCount: inactiveRoomCount,
-        usercount: usercount,
-        messagecount: messagecount,
-        roomWithChat: roomWithChat
+        userList
     });
-    else res.redirect('/');
 });
+
+app.route("/user/:id")
+    .put(checkAuthenticated, async (req, res) => {
+        await updateAdminRightsByID(req.params.id);
+        res.redirect("/user");
+    })
+    .delete(checkAuthenticated, async (req, res) => {
+        await deleteUserbyID(req.params.id);
+        res.redirect("/user");
+    })
+
+app.use("/admin", require('./routes/adminRouter.js'));
+
 app.route("/login")
     .get(checkNotAuthenticated, (req, res) => {
         res.render('./pages/login.ejs')
@@ -120,7 +121,7 @@ app.use("/register", require('./routes/registerRouter.js'));
 
 app.delete("/logout", (req, res) => {
     req.logOut();
-    req.flash('success_msg', 'Du hast die erfolgreich abgemeldet')
+    req.flash('success_msg', 'Du hast dich erfolgreich abgemeldet')
     res.redirect("/login");
 });
 //* Express App
@@ -135,18 +136,18 @@ app.use(bodyParser.json);
 //Function on connection to the Websocket
 io.on('connection', function (socket) {
     // Emitting a join Room Signal which notifies all users, which user joined the room
-    socket.on("JoinRoom", async (username, room) => {
-        socket.join(room);
-        (await getMessagesFromRoom(room)).forEach((entry) => {
+    socket.on("JoinRoom", async (username, roomName, roomID) => {
+        socket.join(roomName);
+        (await getMessagesFromRoom(roomID)).forEach((entry) => {
             io.to(socket.id).emit('load history', formatMessage(entry.sender.username, entry.sender.email, moment(entry.date), entry.message));
         });
-        io.to(room).emit('broadcast', formatMessage(broadcastName, '', moment(), `${username} has joined the Chat...`));
+        io.to(roomName).emit('broadcast', formatMessage(broadcastName, '', moment(), `${username} has joined the Chat...`));
     });
 
     // Emitting a chat message to the front-end
     socket.on('chat message', function (data) {
-        io.in(data.room).emit('chat message', formatMessage(data.name, data.email, moment(), data.message));
-        saveMessage(data.room, data.name, data.email, data.message);
+        io.in(data.roomName).emit('chat message', formatMessage(data.name, data.email, moment(), data.message));
+        saveMessage(data.roomID, data.name, data.email, data.message);
     });
 });
 

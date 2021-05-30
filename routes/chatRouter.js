@@ -7,10 +7,7 @@ const {
     createRoom,
     getRoomByName,
     getAllRooms,
-    getActiveRooms,
-    setRoomInactive,
-    getInactiveRooms,
-    deleteRoomByName,
+    deleteRoomByID,
 } = require('../utils/rooms');
 const {
     checkAuthenticated
@@ -18,7 +15,7 @@ const {
 
 router.route('/')
     .get(checkAuthenticated, async (req, res) => {
-        let rooms = await getActiveRooms();
+        let rooms = await getAllRooms();
         res.render('./pages/chatList.ejs', {
             user: formatUser(req.user),
             rooms: rooms
@@ -45,7 +42,10 @@ router.route("/:roomName")
             if (room) {
                 res.render('./pages/chatRoom.ejs', {
                     user: formatUser(req.user),
-                    room: room.name
+                    room: {
+                        name: room.name,
+                        id: room._id
+                    }
                 });
             } else {
                 res.redirect("/chat");
@@ -53,8 +53,10 @@ router.route("/:roomName")
         });
     })
     .delete(checkAuthenticated, async (req, res) => {
-        await deleteRoomByName(req.params.roomName);
-        res.redirect('/chat');
+        getRoomByName(req.params.roomName).then(async (room) => {
+            await deleteRoomByID(room._id);
+            res.redirect('/chat');
+        })
     })
 
 module.exports = router;

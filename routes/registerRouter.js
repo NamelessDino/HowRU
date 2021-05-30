@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 //Password encryption with bcrypt
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const {
     createUser,
     getUserByEmail
@@ -65,7 +65,7 @@ router.route('/')
                     errors.push({
                         msg: 'Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuch es erneut'
                     });
-                    res.render('register.ejs', {
+                    res.render('./pages/register.ejs', {
                         errors,
                         username,
                         email

@@ -19,7 +19,7 @@ async function createRoom(name, user) {
 function getRoomByName(name) {
     return RoomSchema.findOne({
         'name': name
-    })
+    });
 }
 
 async function getAllRooms() {
@@ -28,6 +28,7 @@ async function getAllRooms() {
         rooms.forEach(function (room) {
             roomArray.push({
                 name: room.name,
+                id: room._id,
                 owner: room.owner
             });
         });
@@ -38,7 +39,7 @@ async function getAllRoomsWithChatcount() {
     let roomArrayWithChat = [];
     let roomArray = await getAllRooms();
     await asyncForEach(roomArray, async (room) => {
-        let chatArray = await getMessagesFromRoom(room.name);
+        let chatArray = await getMessagesFromRoom(room.id);
         roomArrayWithChat.push({
             name: room.name,
             messagecount: chatArray.length
@@ -48,58 +49,14 @@ async function getAllRoomsWithChatcount() {
     return await roomArrayWithChat;
 }
 
-async function getActiveRooms() {
-    var roomArray = [];
-    await RoomSchema.find({
-        inactive: false
-    }).then((rooms) => {
-        rooms.forEach(function (room) {
-            roomArray.push({
-                name: room.name,
-                owner: room.owner
-            });
-        });
-    });
-    return roomArray;
-}
-
-async function getInactiveRooms() {
-    var roomArray = [];
-    await RoomSchema.find({
-        inactive: true
-    }).then((rooms) => {
-        rooms.forEach(function (room) {
-            roomArray.push({
-                name: room.name,
-                owner: room.owner
-            });
-        });
-    });
-    return roomArray;
-}
-
-async function deleteRoomByName(roomName) {
+async function deleteRoomByID(roomID) {
     await ChatSchema.deleteMany({
-        roomName: roomName
+        'roomID': roomID
     }).then(async () => {
         await RoomSchema.deleteOne({
-            name: roomName
+            '_id': roomID
         })
-    });
-    return true;
-}
-
-async function setRoomInactive(name) {
-    const room = await RoomSchema.findOne({
-        'name': name
-    });
-    room.overwrite({
-        '_id': room._id,
-        'name': room.name,
-        'owner': room.owner,
-        'inactive': true
-    });
-    await room.save();
+    }).finally(() => {return true});
 }
 
 async function asyncForEach(array, callback) {
@@ -113,8 +70,5 @@ module.exports = {
     getRoomByName,
     getAllRooms,
     getAllRoomsWithChatcount,
-    getActiveRooms,
-    getInactiveRooms,
-    deleteRoomByName,
-    setRoomInactive
+    deleteRoomByID
 }

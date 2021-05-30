@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ChatSchema = mongoose.Schema({
-    roomName: String,
+    roomID: mongoose.Schema.Types.ObjectId,
     sender: {username: String, email: String},
     message: String,
     date: {type: Date, default: Date.now}

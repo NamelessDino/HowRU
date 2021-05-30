@@ -2,9 +2,9 @@ const ChatSchema = require('../models/ChatSchema');
 const mongoose = require('mongoose');
 const dbconnect = require('./dbconnect');
 
-async function saveMessage(roomName, username, email, message) {
+async function saveMessage(roomID, username, email, message) {
     let chatMessage = new ChatSchema({
-        roomName: roomName,
+        roomID: roomID,
         sender: {
             username: username,
             email: email
@@ -13,14 +13,14 @@ async function saveMessage(roomName, username, email, message) {
     });
     await chatMessage.save();
 }
-async function getMessagesFromRoom(roomName) {
+async function getMessagesFromRoom(roomID) {
     var chatArray = [];
     await ChatSchema.find({
-        roomName: roomName
+        'roomID': roomID
     }).then((chats) => {
         chats.forEach((chat) => {
             chatArray.push({
-                roomName: chat.roomName,
+                roomID: chat.roomID,
                 sender: {
                     username: chat.sender.username,
                     email: chat.sender.email
@@ -38,7 +38,7 @@ async function getMessages() {
         .then((chats) => {
             chats.forEach((chat) => {
                 chatArray.push({
-                    roomName: chat.roomName,
+                    roomID: chat.roomID,
                     sender: {
                         username: chat.sender.username,
                         email: chat.sender.email
@@ -51,8 +51,16 @@ async function getMessages() {
     return chatArray;
 }
 
+async function getAverageMessagesPerUser(usercount) {
+    var chatArray = await getMessages();
+
+    var averageMessagesPerUser = (chatArray.length / usercount);
+    return averageMessagesPerUser.toFixed(2);
+}
+
 module.exports = {
     saveMessage,
     getMessagesFromRoom,
-    getMessages
+    getMessages,
+    getAverageMessagesPerUser
 }

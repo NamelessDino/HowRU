@@ -1,4 +1,4 @@
-<title>HowRU - <%= room %></title>
+<title>HowRU - <%= room.name %></title>
 <%- include('../partials/navbar.ejs') %>
 <main>
   <%- include('../partials/header.ejs') %>
@@ -7,7 +7,7 @@
   </div>
   <div class="container-fluid" id="input-container">
     <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
+      <input id="input" autocomplete="off" maxlength="500"/><button>Send</button>
     </form>
   </div>
 </main>
@@ -16,5 +16,6 @@
 <script>
   const username = '<%= user.username %>';
   const email = '<%= user.email %>';
-  const room = '<%= room %>';
+  const roomName = '<%= room.name %>';
+  const roomID = '<%= room.id %>';
 </script>

@@ -7,7 +7,7 @@ var input = document.getElementById('input');
 
 
 //*Join Room
-socket.emit("JoinRoom", username, room);
+socket.emit("JoinRoom", username, roomName, roomID);
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     if (!input.value) return;
@@ -15,7 +15,8 @@ form.addEventListener('submit', function (event) {
         name: username,
         email: email,
         message: input.value,
-        room: room
+        roomName: roomName,
+        roomID: roomID
     });
     input.value = '';
 });
