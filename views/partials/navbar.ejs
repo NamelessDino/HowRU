@@ -15,6 +15,12 @@
         </li>
         <% } %>
         <li class="navbar-item">
+            <a href="/user" class="nav-link">
+                <i class="fas fa-users"></i>
+                <span class="link-text">User</span>
+            </a>
+        </li>
+        <li class="navbar-item">
             <a href="/chat" class="nav-link">
                 <i class="fas fa-comment"></i>
                 <span class="link-text">Chat</span>
@@ -24,7 +30,7 @@
             <form id="logout" action="/logout?_method=DELETE" method="post">
                 <a href="javascript:;" onclick="document.getElementById('logout').submit();" class="nav-link">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span class="link-text">LogOut</span>
+                    <span class="link-text">LogOut <%= user.username %></span>
                 </a>
                 <input type="hidden">
             </form>

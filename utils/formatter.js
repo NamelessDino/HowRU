@@ -13,7 +13,8 @@ function formatUser(user) {
     return {
         username: user.username,
         email: user.email,
-        admin: user.admin
+        admin: user.admin,
+        id: user._id
     };
 }
 

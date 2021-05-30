@@ -51,8 +51,16 @@ async function getMessages() {
     return chatArray;
 }
 
+async function getAverageMessagesPerUser(usercount) {
+    var chatArray = await getMessages();
+
+    var averageMessagesPerUser = (chatArray.length / usercount);
+    return averageMessagesPerUser.toFixed(2);
+}
+
 module.exports = {
     saveMessage,
     getMessagesFromRoom,
-    getMessages
+    getMessages,
+    getAverageMessagesPerUser
 }

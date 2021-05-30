@@ -26,10 +26,13 @@ const {
 const {
     saveMessage,
     getMessagesFromRoom,
-    getMessages
+    getMessages,
+    getAverageMessagesPerUser
 } = require('./utils/chatMessages');
 const {
-    getUsers
+    getUsers,
+    updateAdminRightsByID,
+    deleteUserbyID
 } = require('./utils/users');
 const {
     getAllRooms,
@@ -84,22 +87,26 @@ app.get("/", checkAuthenticated, (req, res) => {
 //Rendering Chat Page and checking if User is authenticated
 app.use("/chat", require('./routes/chatRouter.js'));
 
-//Rendering Admin Page and checking if User is authenticated
-app.get("/admin", checkAuthenticated, async (req, res) => {
-    roomcount = (await getAllRooms()).length;
-    usercount = (await getUsers()).length;
-    messagecount = (await getMessages()).length;
-    roomWithChat = (await getAllRoomsWithChatcount());
-    //Checking whether a User has admin rights or nor
-    if (req.user.admin) res.render('./pages/admin.ejs', {
+app.get("/user", checkAuthenticated, async (req, res) => {
+    userList = await getUsers();
+    res.render('./pages/userList.ejs', {
         user: formatUser(req.user),
-        roomcount,
-        usercount: usercount,
-        messagecount: messagecount,
-        roomWithChat: roomWithChat
+        userList
     });
-    else res.redirect('/');
 });
+
+app.route("/user/:id")
+    .put(checkAuthenticated, async (req, res) => {
+        await updateAdminRightsByID(req.params.id);
+        res.redirect("/user");
+    })
+    .delete(checkAuthenticated, async (req, res) => {
+        await deleteUserbyID(req.params.id);
+        res.redirect("/user");
+    })
+
+app.use("/admin", require('./routes/adminRouter.js'));
+
 app.route("/login")
     .get(checkNotAuthenticated, (req, res) => {
         res.render('./pages/login.ejs')
@@ -114,7 +121,7 @@ app.use("/register", require('./routes/registerRouter.js'));
 
 app.delete("/logout", (req, res) => {
     req.logOut();
-    req.flash('success_msg', 'Du hast die erfolgreich abgemeldet')
+    req.flash('success_msg', 'Du hast dich erfolgreich abgemeldet')
     res.redirect("/login");
 });
 //* Express App

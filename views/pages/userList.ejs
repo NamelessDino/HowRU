@@ -1,0 +1,47 @@
+<title>HowRU - User-Liste</title>
+<%- include('../partials/navbar.ejs') %>
+<main>
+    <%- include('../partials/header.ejs') %>
+    <div class="container">
+        <h1 class="text-center"><i class="fas fa-users"></i> User-Liste</h1>
+        <% if(userList.length > 0) { %>
+        <ul class="list-group">
+            <% userList.forEach(userListItem => { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <% var icon = 'fas fa-user' %>
+                <%if(userListItem.admin) {icon = 'fas fa-user-cog'}%>
+                <span>
+                    <i class="<%= icon %>"></i>
+                    <%= userListItem.username %> | <i class="far fa-envelope"></i> <a href="mailto:<%= userListItem.email %>"><%= userListItem.email %></a>
+                    <% if (userListItem.email === user.email){%><span class="badge rounded-pill bg-info">Ich</span><%}%>
+                </span>
+                <div class="btn-group" role="group">
+                    <% if(user.admin && userListItem.email != user.email) {%>
+                    <% if(!userListItem.admin) { %>
+                    <form action="/user/<%= userListItem.id %>?_method=PUT" method="POST" class="text-right">
+                        <button type="submit" class="btn btn-success btn-sm">
+                            Admin
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </form>
+                    <%} else { %>
+                    <form action="/user/<%= userListItem.id %>?_method=PUT" method="POST" class="text-right">
+                        <button type="submit" class="btn btn-warning btn-sm">
+                            Admin
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </form>
+                    <%}%>
+                    <form action="/user/<%= userListItem.id %>?_method=DELETE" method="POST"
+                        class="text-right">
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>
+                            Löschen</button>
+                    </form>
+                    <%}%>
+                </div>
+            </li>
+            <% }); %>
+        </ul>
+        <% } %>
+    </div>
+</main>
