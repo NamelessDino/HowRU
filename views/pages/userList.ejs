@@ -13,6 +13,7 @@
                 <span>
                     <i class="<%= icon %>"></i>
                     <%= userListItem.username %> | <i class="far fa-envelope"></i> <a href="mailto:<%= userListItem.email %>"><%= userListItem.email %></a>
+                    <%if (userListItem.admin){%><span class="badge rounded-pill bg-danger">Admin</span><%}%>
                     <% if (userListItem.email === user.email){%><span class="badge rounded-pill bg-info">Ich</span><%}%>
                 </span>
                 <div class="btn-group" role="group">
